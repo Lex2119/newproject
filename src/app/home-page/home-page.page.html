@@ -41,16 +41,22 @@
 
   <ion-grid>
     <ion-row class="ProductRow">
-      <ion-col class="RmvPadding" size="6">
-        <ion-card class="ProductFrame">
+      <ion-col class="RmvPadding" size="6" *ngFor="let pair of myproductlist">
+        <ion-card class="ProductFrame" (click)="ProductClick()">
           <div>
-            <img class="ProductImage" src="\assets\red-tshirt.jpg">
+            <img class="ProductImage" src="{{pair.image}}">
           </div>
-          <ion-button class="AddtoCartBtn" color="warning">
-            <ion-icon slot="icon-only" name="bag-handle-outline"></ion-icon>
-          </ion-button>
+          
+          <div>
+            <ion-label>{{ pair.name }}</ion-label>
+            
+          </div>
+          
         </ion-card>
-
+        
+        <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
+          <ion-icon slot="icon-only" name="bag-handle-outline"></ion-icon>
+        </ion-button>
       </ion-col>
 
       <ion-col class="RmvPadding" size="6">

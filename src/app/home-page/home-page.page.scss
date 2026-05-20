@@ -62,16 +62,19 @@
     height: 260px;
     margin: 5%;
     padding: 5px;
+    margin: 5px 3px 5px 3px;
+
 }
 .ProductRow{
     padding: 5px 9px;
+    height: 400px;
 }
 .RmvPadding{
     padding: 0px;
 }
 
 .ProductImage{
-
+    height: 140px;
 }
 
 .AddtoCartBtn{
@@ -81,4 +84,5 @@
     top: 50%;
     left: 40%;
     --border-radius: 50%;
-}
+
+}          
