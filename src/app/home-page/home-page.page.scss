@@ -1,0 +1,84 @@
+.mainbackground{
+    background-color: rgb(185, 185, 185);
+    padding: 10px 16px;
+}
+.ProfileImage{
+    width: 90%;
+    height: 60px;
+    margin: 8px;
+    border-radius: 10px;
+}
+.WelcomeMsg{
+    font-weight: bold;
+    font-size: 23px;
+    color:black;
+    display: block;
+}
+.WelcomeMsg2{
+    font-size: 14px;
+    color: rgb(119, 119, 119);
+}
+.MenuIcon{
+    width: 70%;
+    height: 60px;
+    margin: 8px;
+    border-radius: 10px;
+}
+.MenuTextSession{
+    padding: 10px 0px;
+}
+.MenuFrame{
+    background-color: white;
+    padding: 0px;
+}
+.HorizontalBanner{
+    height: 202px;
+    background-color: rgb(199, 130, 3);
+    border-radius: 15px;
+    margin: 0px 16px;
+}
+.TitleText{
+    font-weight: bold;
+    font-size: 28px;
+    margin: 10px 16px;
+}
+.SeeAllText{
+    color: gray;
+}
+.DividerArea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 9px; 
+}
+.CategoriesList{
+    height: 50px;
+    width: 140px;
+    background-color: orange;
+    margin: 0px 16px;
+}
+.ProductFrame{
+    width: 90%;
+    height: 260px;
+    margin: 5%;
+    padding: 5px;
+}
+.ProductRow{
+    padding: 5px 9px;
+}
+.RmvPadding{
+    padding: 0px;
+}
+
+.ProductImage{
+
+}
+
+.AddtoCartBtn{
+    position: absolute;
+    width: 13%;
+    height: 7%;
+    top: 50%;
+    left: 40%;
+    --border-radius: 50%;
+}

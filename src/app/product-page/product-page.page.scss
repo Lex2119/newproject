@@ -1,0 +1,66 @@
+.theGrid{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.topRow{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(94, 218, 255);
+    border-radius: 0px 0px 30px 30px;
+    z-index: 2;
+}
+.image-box {
+  height: 60%;
+}
+.productImg{
+    animation:rotateAnimation 6s linear infinite;
+}
+@keyframes rotateAnimation{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.midRow{
+    height: 40%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-top: -30px;
+}
+
+.spacer {
+  flex-grow: 1;  
+}
+
+.bottomSession{
+    height: 10%;
+    width: 100%;
+    display: flex;
+}
+.bottomRow{
+    flex: 1;
+    height: 100%;
+}
+.rightCol{
+    display: flex;
+    padding: 0px;
+}
+.GreenAdd{
+    background-color: rgb(60, 63, 60);
+    height: 100%;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    border-radius: 60px 0 0 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 23px;
+}

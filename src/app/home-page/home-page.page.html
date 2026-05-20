@@ -1,0 +1,70 @@
+
+
+<ion-content [fullscreen]="true" class="mainbackground">
+
+  <ion-card class="MenuFrame">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2.5">
+            <img class="ProfileImage" src="https://placehold.co/200x200">
+          </ion-col>     
+          <ion-col size="6.5">
+            <div class="MenuTextSession">
+              <ion-label class="WelcomeMsg">Hi Alex</ion-label>
+              <ion-label class="WelcomeMsg2">Good Morning</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button class="MenuIcon"  color="light">Settings</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-card>
+
+  <ion-card class="HorizontalBanner"></ion-card>
+
+  <div class="DividerArea">
+      <ion-label class="TitleText">
+    Categories
+      </ion-label>
+      <ion-label class="SeeAllText">See All</ion-label>
+  </div>
+
+  <ion-card class="CategoriesList"></ion-card>
+
+    <div class="DividerArea">
+      <ion-label class="TitleText">
+    Products
+      </ion-label>
+      <ion-label class="SeeAllText">See All</ion-label>
+  </div>
+
+  <ion-grid>
+    <ion-row class="ProductRow">
+      <ion-col class="RmvPadding" size="6">
+        <ion-card class="ProductFrame">
+          <div>
+            <img class="ProductImage" src="\assets\red-tshirt.jpg">
+          </div>
+          <ion-button class="AddtoCartBtn" color="warning">
+            <ion-icon slot="icon-only" name="bag-handle-outline"></ion-icon>
+          </ion-button>
+        </ion-card>
+
+      </ion-col>
+
+      <ion-col class="RmvPadding" size="6">
+        <ion-card class="ProductFrame"></ion-card>
+      </ion-col>
+
+      <ion-col class="RmvPadding" size="6">
+        <ion-card class="ProductFrame"></ion-card>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+
+  
+</ion-content>
