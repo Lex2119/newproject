@@ -1,5 +1,5 @@
 .mainbackground{
-    background-color: rgb(185, 185, 185);
+    background-color: rgb(187, 185, 185);
     padding: 10px 16px;
 }
 .ProfileImage{
@@ -84,5 +84,40 @@
     top: 50%;
     left: 40%;
     --border-radius: 50%;
-
 }          
+
+.horizontal-list{
+    display: flex;
+    overflow-x: auto;
+    gap:12px;
+
+    scroll-snap-type: x mandatory;
+}
+
+.horizontal-list ::-webkit-scrollbar{
+    display: none;
+}
+
+.card{
+    min-width: 150px;
+    height: 60px;
+    background-color: rgb(206, 206, 206);
+    border-radius: 12px;
+    padding: 10p;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+.card-img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card:active{
+    transform: scale(0.93);
+}
+.card.selected{
+    background: linear-gradient(90deg,rgba(237, 61, 7, 1) 0%, rgba(224, 144, 114, 1) 100%, rgba(247, 206, 183, 1) 100%);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,2);
+}

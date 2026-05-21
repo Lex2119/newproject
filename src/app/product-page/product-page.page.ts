@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../database/product';
 
 @Component({
   selector: 'app-product-page',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPagePage implements OnInit {
 
-  constructor() { }
+  constructor( private product: Product) { }
+
+  myproductlist = this.product.getProduct();
 
   ngOnInit() {
   }

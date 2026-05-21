@@ -5,7 +5,7 @@
  <ion-grid class="theGrid">
 
   <div class="topRow">
-    <ion-row>
+    <ion-row *ng="let pair of myproductlist">
         <ion-col class="box menu-box"></ion-col>        
         <ion-col class="box menu-box" size="3"></ion-col>
       </ion-row>
