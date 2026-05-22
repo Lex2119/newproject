@@ -3,14 +3,14 @@
 
  <div class="TopSession">
 
-  <div class="scollable-list">
+  <div class="scrollable-list">
     <ion-grid>
-      <ion-row class="CartItemRow" *ngFor="let item of testlist" >
+      <ion-row class="CartItemRow" *ngFor="let item of CartList" >
         <ion-col size="6" class="LeftCol">
           <div class="LeftCol" style="width: 100%;" >
 
-            <div class="ProductContainer"></div>
-            <img class="CartImg" src="/assets/mexican-food-platter-with-tacos-grilled-chicken_84443-79098-removebg-preview.png">
+            <div class="ProductContainer" style="background-color: {{item.backgroundColor}}"></div>
+            <img class="CartImg" src="{{item.image}}">
             <ion-card class="quantityarea">
               <ion-grid>
                 <ion-row>
@@ -20,7 +20,7 @@
                     <div class="Divider"></div>
                   </ion-col>
 
-                  <ion-col size="4">1</ion-col>
+                  <ion-col size="4">{{item.quantity}}</ion-col>
 
                   <ion-col size="auto">
                     <div class="Divider"></div>
@@ -32,7 +32,9 @@
             </ion-card>
           </div>
         </ion-col>
-        <ion-col size="6"></ion-col>
+        <ion-col size="6">
+          <h1>{{item.productName}}</h1>
+        </ion-col>
       </ion-row>
     </ion-grid>
 

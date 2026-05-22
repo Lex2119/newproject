@@ -11,30 +11,32 @@
     transform: translateY(-100%);
     animation: slideInTop 1s ease-out forwards;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-scrollable-list{
-    color: black;
+.scrollable-list{
+    flex-grow: 1;
+    overflow-y: auto;
 }
 .CartItemRow{
     margin: 24px 0px;
 }
 
 .LeftCol{
-    color: black;
+
 }
 
 .ProductContainer{
     height: 160px;
     width: 80%;
-    background-color: orangered;
     border-radius: 16px;
     margin: 12px 16px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .CartImg{
-    height: 220px;
-    width: 220px;
+    height: 200px;
+    width: 200px;
     position: absolute;
     top: -16%;
     left:12%;

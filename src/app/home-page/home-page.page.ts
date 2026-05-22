@@ -17,8 +17,8 @@ export class HomePagePage implements OnInit {
 
   myproductlist = this.product.getProduct();
   
-  ProductClick(id : number){
-    this.router.navigate(['/product-page' , id]);
+  ProductClick(productid : number){
+    this.router.navigate(['/product-page', {productid : productid}]);
   }
 
   addtocart(id : number){
@@ -45,6 +45,10 @@ categoriesList = [
   selectedItem : any;
   selecteditem(item : any){
     this.selectedItem = item;
+  }
+
+  LinkToCart(){
+    this.router.navigate(['/cart-page']);
   }
 
   ngOnInit() {

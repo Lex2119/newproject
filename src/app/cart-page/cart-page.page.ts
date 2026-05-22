@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from '../database/product';
 
 @Component({
   selector: 'app-cart-page',
@@ -8,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPagePage implements OnInit {
 
-  testlist=["","","","",""]
-  constructor() { }
+  CartList : any;
+
+  constructor(private product: Product) {
+    this.CartList = product.getCartList();
+   }
 
   ngOnInit() {
   }

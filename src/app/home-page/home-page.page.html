@@ -15,7 +15,7 @@
             </div>
           </ion-col>
           <ion-col size="3">
-            <ion-button class="MenuIcon"  color="light">Cart</ion-button>
+            <ion-button class="MenuIcon"  color="light" (click)="LinkToCart()">Settings</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -66,7 +66,7 @@
            <ion-label class="DescriptionText">{{ pair.description }}</ion-label>
         </ion-card>
         
-        <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
+        <ion-button class="AddtoCartBtn" color="warning" >
           <ion-icon slot="icon-only" name="bag-handle-outline"></ion-icon>
         </ion-button>
       </ion-col>

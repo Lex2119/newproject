@@ -4,22 +4,22 @@
 
  <ion-grid class="theGrid">
 
-  <div class="topRow">
-    <ion-row *ng="let pair of myproductlist">
+  <div class="topRow" style="background-color: {{MyProduct.backgroundcolor}};">
+    <ion-row >
         <ion-col class="box menu-box"></ion-col>        
         <ion-col class="box menu-box" size="3"></ion-col>
       </ion-row>
       <ion-row class="image-box ">
         <ion-col class="box">
-          <img class="productImg" src="/assets/mexican-food-platter-with-tacos-grilled-chicken_84443-79098-removebg-preview.png">
+          <img class="productImg" src="{{MyProduct.image}}">
         </ion-col>
       </ion-row>
       
       <ion-row class="text-box">
         <ion-col class="box">
           <div>
-            <h1>$120</h1>
-            <h2>Food</h2>
+            <h1>{{MyProduct.name}}</h1>
+            <h2>{{MyProduct.price}}</h2>
           </div>
         </ion-col>
       </ion-row>
@@ -33,10 +33,20 @@
 
   <div class="bottomSession">
     <ion-row class="bottomRow">
-      <ion-col size="6"></ion-col>
+      <ion-col size="6">
+        <div class="QuantitySession">
+          <ion-grid style="color: white;">
+            <ion-row>
+              <ion-col (click)="MinusQuantity()">-</ion-col>
+              <ion-col>{{Quantity}}</ion-col>
+              <ion-col (click)="AddQuantity()">+</ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
 
       <ion-col size="6" class="rightCol">
-        <div class="GreenAdd">
+        <div class="GreenAdd" (click)="Addtocart()">
           Add to Cart
         </div>
       </ion-col>
