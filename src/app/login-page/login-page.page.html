@@ -1,7 +1,43 @@
+<ion-content [fullscreen]="true" class="loginBackground">
 
+  <div class="LoginContainer">
 
-<ion-content [fullscreen]="true">
+    <div class="TopSection">
 
-  
+      <h1 class="TitleText">Login</h1>
+
+    </div>
+
+    <div class="FormSection">
+
+      <ion-item class="InputBox" lines="none">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+
+        <ion-input
+          type="text"
+          placeholder="Username"
+          [(ngModel)]="username">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="InputBox" lines="none">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+
+        <ion-input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="LoginButton" (click)="LoginClick()">
+
+        Login
+
+      </ion-button>
+
+    </div>
+
+  </div>
+
 </ion-content>
-                                                     

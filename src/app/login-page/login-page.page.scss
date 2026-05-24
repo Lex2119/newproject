@@ -1,0 +1,87 @@
+.loginBackground{
+    --background: rgb(187, 185, 185);
+}
+
+.LoginContainer{
+    padding: 30px 24px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.TopSection{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.LogoImage{
+    width: 120px;
+    height: 120px;
+
+    border-radius: 25px;
+
+    margin-bottom: 20px;
+}
+
+.TitleText{
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+
+    margin: 0;
+}
+
+.SubtitleText{
+    color: rgb(90,90,90);
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.FormSection{
+    width: 100%;
+}
+
+.InputBox{
+    margin-bottom: 18px;
+
+    --background: white;
+
+    border-radius: 14px;
+
+    --padding-start: 10px;
+
+    --min-height: 58px;
+
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
+
+.LoginButton{
+    margin-top: 20px;
+
+    height: 55px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    --border-radius: 14px;
+
+    --background: linear-gradient(
+        90deg,
+        rgba(237, 61, 7, 1) 0%,
+        rgba(224, 144, 114, 1) 100%
+    );
+}
+
+.BottomText{
+    display: block;
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: gray;
+
+    font-size: 14px;
+}
