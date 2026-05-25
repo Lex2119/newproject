@@ -1,59 +1,70 @@
-
-
 <ion-content [fullscreen]="true">
-
- <ion-grid class="theGrid">
-
-  <div class="topRow" style="background-color: {{MyProduct.backgroundcolor}};">
-    <ion-row >
-        <ion-col class="box menu-box"></ion-col>        
-        <ion-col class="box menu-box" size="3"></ion-col>
-      </ion-row>
-      <ion-row class="image-box ">
-        <ion-col class="box">
-          <img class="productImg" src="{{MyProduct.image}}">
-        </ion-col>
-      </ion-row>
+  <ion-grid class="theGrid">
+    
+    <div class="topRow" [style.background-color]="MyProduct?.backgroundcolor">
       
-      <ion-row class="text-box">
-        <ion-col class="box">
-          <div>
-            <h1>{{MyProduct.name}}</h1>
-            <h2>{{MyProduct.price}}</h2>
+      <div class="custom-header">
+        <div class="back-icon-container" routerLink="/home-page">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </div>
+        <div class="header-spacer"></div> 
+      </div>
+
+      <ion-row class="image-box">
+        <ion-col class="ion-text-center">
+          <div class="imageCircleWrapper">
+            <img class="productImg" [src]="MyProduct?.image" alt="Food Image">
           </div>
         </ion-col>
       </ion-row>
-  </div>
+    </div>
 
-  <div class="midRow">
-    
-  </div>
+    <div class="midRow">
+      <div class="product-info">
+        <h1 class="productName">{{MyProduct?.name}}</h1>
+        <h2 class="productPrice">${{MyProduct?.price}}</h2>
+        
+        <p class="productDescription">
+          {{MyProduct?.description}}
+        </p>
 
-  <div class="spacer"></div>
+        <h3 class="sectionTitle">Ingredients</h3>
+        <p class="ingredientsText">
+          {{MyProduct?.ingredientlist}}
+        </p>
+      </div>
+    </div>
 
-  <div class="bottomSession">
-    <ion-row class="bottomRow">
-      <ion-col size="6">
-        <div class="QuantitySession">
-          <ion-grid style="color: white;">
-            <ion-row>
-              <ion-col (click)="MinusQuantity()">-</ion-col>
-              <ion-col>{{Quantity}}</ion-col>
-              <ion-col (click)="AddQuantity()">+</ion-col>
-            </ion-row>
-          </ion-grid>
+    <div class="bottomSession">
+      <ion-row class="bottomRow">
+        <ion-col size="5" class="quantity-col">
+          <div class="QuantitySession">
+            <span class="qty-btn" (click)="MinusQuantity()">−</span>
+            <span class="qty-number">{{Quantity}}</span>
+            <span class="qty-btn" (click)="AddQuantity()">+</span>
+          </div>
+        </ion-col>
+
+        <ion-col size="7" class="rightCol">
+          <div class="GreenAddAction" (click)="NoticeAddtocart()">
+            Add to Cart
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-modal [isOpen]="isModelOpen" cssClass="asking-add-to-cart-model" (didDismiss)="onModelDismiss()">
+      <ng-template>
+        <div class="notice-model">
+          <p class="notice-title">Are you sure you want to add to cart?</p>
+          <div class="notice-button-area">
+            <ion-button class="no-add-cart" (click)="AddProductToCart(false)">No</ion-button>
+            <ion-button class="yes-add-cart" (click)="AddProductToCart(true)">Yes</ion-button>
+          </div>
         </div>
-      </ion-col>
+      </ng-template>
 
-      <ion-col size="6" class="rightCol">
-        <div class="GreenAdd" (click)="Addtocart()">
-          Add to Cart
-        </div>
-      </ion-col>
+    </ion-modal>
 
-    </ion-row>
-  </div>
-
- </ion-grid>
-
+  </ion-grid>
 </ion-content>

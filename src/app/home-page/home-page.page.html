@@ -60,14 +60,13 @@
           
           <div>
             <ion-label class="NameText">{{ pair.name }}</ion-label>
-
-            
+            <ion-label class="PriceText">${{ pair.price }}</ion-label>
           </div>
-           <ion-label class="DescriptionText">{{ pair.description }}</ion-label>
+          
         </ion-card>
         
-        <ion-button class="AddtoCartBtn" color="warning" >
-          <ion-icon slot="icon-only" name="bag-handle-outline"></ion-icon>
+        <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)"  >
+          <ion-icon slot="icon-only" name="bag-handle-outline" ></ion-icon>
         </ion-button>
       </ion-col>
 

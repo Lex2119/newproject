@@ -1,42 +1,46 @@
-<ion-content [fullscreen]="true" class="loginBackground">
+<ion-content [fullscreen]="true" class="loginBackground" #content>
 
   <div class="LoginContainer">
 
     <div class="TopSection">
-
-      <h1 class="TitleText">Login</h1>
-
+      <img src="assets/shapes.svg" class="LogoImage" alt="Food App Logo">
+      <h1 class="TitleText">FoodExpress</h1>
+      <p class="SubtitleText">Fresh food delivered to your dorm</p>
     </div>
 
     <div class="FormSection">
-
+      
       <ion-item class="InputBox" lines="none">
         <ion-icon name="person-outline" slot="start"></ion-icon>
-
-        <ion-input
-          type="text"
-          placeholder="Username"
-          [(ngModel)]="username">
+        <ion-input 
+          type="text" 
+          placeholder="Username" 
+          [(ngModel)]="username"
+          (ionBlur)="onInputBlur()">
         </ion-input>
       </ion-item>
 
       <ion-item class="InputBox" lines="none">
         <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-
-        <ion-input
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="password">
+        <ion-input 
+          type="password" 
+          placeholder="Password" 
+          [(ngModel)]="password"
+          (ionBlur)="onInputBlur()">
         </ion-input>
       </ion-item>
 
+      <p class="ErrorMessage" *ngIf="showError">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        Invalid username or password.
+      </p>
+
       <ion-button expand="block" class="LoginButton" (click)="LoginClick()">
-
-        Login
-
+        Sign In
       </ion-button>
 
     </div>
+
 
   </div>
 

@@ -1,45 +1,44 @@
-
 <ion-content [fullscreen]="true" class="mainbackground">
 
- <div class="TopSession">
+  <div class="TopSession">
+    
+    <div class="custom-header">
+      <div class="back-icon-container" routerLink="/home-page">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+      <span class="header-title">My Cart</span>
+      <div class="header-spacer"></div> </div>
 
-  <div class="scrollable-list">
-    <ion-grid>
-      <ion-row class="CartItemRow" *ngFor="let item of CartList" >
-        <ion-col size="6" class="LeftCol">
-          <div class="LeftCol" style="width: 100%;" >
+    <div class="scrollable-list">
+      <ion-grid>
+        <ion-row class="CartItemRow" *ngFor="let item of CartList">
+          
+          <ion-col size="5.5" class="LeftCol">
+            <div class="ProductContainer" [style.background-color]="item.backgroundColor">
+              <div class="CartImageCircle">
+                <img class="CartImg" [src]="item.image" alt="Product Image">
+              </div>
+            </div>
+            
+            <div class="quantityarea">
+              <div class="qty-action" (click)="decreaseQty(item)">−</div>
+              <div class="Divider"></div>
+              <div class="quantitytext">{{item.quantity}}</div>
+              <div class="Divider"></div>
+              <div class="qty-action" (click)="increaseQty(item)">+</div>
+            </div>
+          </ion-col>
+          
+          <ion-col size="6.5" class="RightCol">
+            <div class="details-wrapper">
+              <h1 class="productName">{{item.productName}}</h1>
+              <h2 class="productPrice">${{item.Price * item.quantity}}</h2>
+            </div>
+          </ion-col>
 
-            <div class="ProductContainer" style="background-color: {{item.backgroundColor}}"></div>
-            <img class="CartImg" src="{{item.image}}">
-            <ion-card class="quantityarea">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="3" >-</ion-col>
-
-                  <ion-col size="auto">
-                    <div class="Divider"></div>
-                  </ion-col>
-
-                  <ion-col size="4">{{item.quantity}}</ion-col>
-
-                  <ion-col size="auto">
-                    <div class="Divider"></div>
-                  </ion-col>
-
-                  <ion-col size="3">+</ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <h1>{{item.productName}}</h1>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
-
- </div>
 
 </ion-content>

@@ -1,11 +1,12 @@
-.mainbackground{
-    --ion-background-color:black;
+.mainbackground {
+    --ion-background-color: #000000;
 }
-.TopSession{
-    position:absolute;
+
+.TopSession {
+    position: absolute;
     height: 90%;
     width: 100%;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 0px 0px 0px 60px;
     z-index: 10;
     transform: translateY(-100%);
@@ -15,59 +16,173 @@
     flex-direction: column;
 }
 
-.scrollable-list{
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f5f5f5; 
+
+    .back-icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent; 
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        color: rgb(236, 52, 20); 
+        cursor: pointer;
+        transition: transform 0.1s ease;
+        
+        ion-icon {
+            font-size: 28px; 
+        }
+        
+        &:active {
+            transform: scale(0.9); 
+        }
+    }
+
+    .header-title {
+        color: #222222; 
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+    }
+
+    .header-spacer {
+        width: 42px; 
+    }
+}
+
+.scrollable-list {
     flex-grow: 1;
     overflow-y: auto;
-}
-.CartItemRow{
-    margin: 24px 0px;
+    padding: 10px 0;
 }
 
-.LeftCol{
-
+.CartItemRow {
+    margin: 32px 16px; 
+    background-color: #ffffff;
+    align-items: center; 
+    display: flex;
 }
 
-.ProductContainer{
-    height: 160px;
-    width: 80%;
-    border-radius: 16px;
-    margin: 12px 16px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.CartImg{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    top: -16%;
-    left:12%;
+.LeftCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+    padding: 0;
 }
 
-.quantityarea{
-    position: absolute;
-    width: 145px;
-    height: 40px;
-    background-color: white;
-    border-radius: 12px;
-    top: 73%;
-    left: -8%;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.ProductContainer {
+    height: 115px;
+    width: 115px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    margin-bottom: 12px; 
+}
 
+.CartImageCircle {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+    transform: translate(15px, -20px) scale(1.25);
+    z-index: 2;
 }
-.quantityarea .quantitytext{
-    text-align: center;
-    font-size: 20px;
-}
-.Divider{
-    background-color: grey;
+
+.CartImg {
     height: 100%;
-    width: 1px;
+    width: 100%;
+    object-fit: cover; 
 }
-@keyframes slideInTop{
-    from{
+
+.quantityarea {
+    position: absolute;
+    bottom: -10px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 105px;
+    height: 34px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    padding: 0 10px;
+    z-index: 5;
+
+    .qty-action {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ff5722;
+        cursor: pointer;
+        padding: 0 4px;
+        user-select: none;
+
+        &:active {
+            opacity: 0.5;
+        }
+    }
+
+    .quantitytext {
+        font-size: 15px;
+        font-weight: 700;
+        color: #222222;
+        text-align: center;
+        min-width: 20px;
+    }
+
+    .Divider {
+        background-color: #e8e8e8;
+        height: 60%;
+        width: 1px;
+    }
+}
+
+.RightCol {
+    display: flex;
+    align-items: center;
+    padding-left: 28px; 
+}
+
+.details-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .productName {
+        font-size: 24px;
+        font-weight: 800;
+        color: #111111;
+        margin: 0 0 4px 0;
+        letter-spacing: -0.3px;
+    }
+
+    .productPrice {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ff5722;
+        margin: 0;
+    }
+}
+
+@keyframes slideInTop {
+    from {
         transform: translateY(-100%);
         opacity: 0;
     }
-    to{
+    to {
         transform: translateY(0);
         opacity: 1;
     }
