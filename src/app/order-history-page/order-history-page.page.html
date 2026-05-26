@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+  <div class="HistoryContainer">
+    
+    <ion-row class="CartItemRow" *ngFor="let item of OrderHistory">
+
+      <ion-col size="4" class="LeftCol">
+        <div class="ProductContainer" [style.background-color]="item.backgroundColor">
+          <div class="CartImageCircle">
+            <img class="CartImg" [src]="item.image" alt="Product Image">
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="8" class="RightCol">
+        <div class="details-wrapper">
+          <h1 class="productName">
+            {{ item.productName }}
+          </h1>
+          
+          <h2 class="productPrice">
+            Quantity: <strong>{{ item.quantity }}</strong>
+          </h2>
+          
+          <h3 class="paymentTime">
+            <ion-icon name="time-outline"></ion-icon> {{ item.paymentTime }}
+          </h3>
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+  </div>
+</ion-content>

@@ -26,7 +26,15 @@ const routes: Routes = [
   {
     path: 'cart-page',
     loadChildren: () => import('./cart-page/cart-page.module').then( m => m.CartPagePageModule)
+  },  {
+    path: 'order-history-page',
+    loadChildren: () => import('./order-history-page/order-history-page.module').then( m => m.OrderHistoryPagePageModule)
   },
+  {
+    path: 'payment-page',
+    loadChildren: () => import('./payment-page/payment-page.module').then( m => m.PaymentPagePageModule)
+  },
+
 ];
 
 @NgModule({

@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true" class="paymentBackground">
+
+  <div class="paymentContainer">
+
+    <h1 class="paymentTitle">
+      Payment
+    </h1>
+
+    <div class="cardBox">
+
+      <input
+        type="text"
+        placeholder="Card Number"
+        class="paymentInput"
+      >
+
+      <input
+        type="text"
+        placeholder="Card Holder Name"
+        class="paymentInput"
+      >
+
+      <div class="rowInput">
+
+        <input
+          type="text"
+          placeholder="MM/YY"
+          class="smallInput"
+        >
+
+        <input
+          type="text"
+          placeholder="CVV"
+          class="smallInput"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="payButton" (click)="PayNow()">
+
+      Pay RM{{GetTotalPrice()}}
+
+    </div>
+
+  </div>
+
+</ion-content>

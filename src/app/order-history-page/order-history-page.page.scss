@@ -1,0 +1,69 @@
+// Spacing and divider between each order row
+.CartItemRow {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+
+// Left column container for the product image background
+.ProductContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px; // Rounds the corners of the colored background
+  height: 90px;
+  width: 100%;
+}
+
+// The white circle inside the colored background
+.CartImageCircle {
+  background-color: #ffffff;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%; // Makes it a perfect circle
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; // Ensures the image doesn't bleed out of the circle
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Subtle shadow for depth
+}
+
+// The actual product image scaling
+.CartImg {
+  width: 75%;
+  height: 75%;
+  object-fit: contain; // Keeps the image proportioned without stretching
+}
+
+// Right column wrapper for text alignment
+.details-wrapper {
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .productName {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #222222;
+  }
+
+  .productPrice {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0 0 6px 0;
+    color: #666666;
+  }
+
+  // The payment time styling
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin: 0;
+    color: #999999;
+  }
+}
