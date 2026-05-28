@@ -49,7 +49,7 @@
 
     .header-title {
         color: #222222; 
-        font-size: 18px;
+        font-size: 23px;
         font-weight: 700;
         letter-spacing: -0.2px;
     }
@@ -187,51 +187,95 @@
         opacity: 1;
     }
 }
-
-.BottomSession{
+.BottomSession {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 10%;
+    height: 11%; /* Slightly tweaked for a more natural footer height profile */
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; 
     align-items: center;
-    padding-right: 20px;
+    padding: 0 0px 0 24px; 
     z-index: 20;
+    background-color: #000000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.CheckoutBox{
-    width: 220px;
-    height: 65px;
-    background-color: #34c759;
-    border-radius: 25px 0px 0px 25px;
+.PriceSummaryBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px; /* Slightly increased gap for clearer separation */
+    flex-grow: 1; /* Allows the text area to expand comfortably */
+    padding-right: 12px;
+}
+
+.total-label {
+    /* A crisp silver-gray that looks incredibly clean on true black backgrounds */
+    color: #a1a1aa ; 
+    font-size: 11px; 
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px; 
+}
+
+.checkout-price {
+    /* Pure white so the actual money calculation is the main focal point */
+    color: #ffffff; 
+    font-size: 22px; 
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.CheckoutBox {
+    width: 60%; /* Marginally narrowed from 50% to give the price area more breathing room */
+    height: 100%; 
+    background-color: #34c759; 
+    
+    /* Increased corner curvature radius to better match the swoop of your TopSession element */
+    border-radius: 40px 0px 0px 0px; 
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; 
 
-    padding: 0px 20px;
-
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-
+    box-shadow: -6px 0 16px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-
-    transition: 0.2s;
+    transition: all 0.2s ease-in-out;
 }
 
-.CheckoutBox:active{
-    transform: scale(0.96);
+.CheckoutBox:active {
+    opacity: 0.95;
+    background-color: #2eb44f;
 }
 
-.checkout-text{
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+.checkout-text {
+    color: #ffffff;
+    font-size: 25px; 
+    font-weight: 700; 
+    letter-spacing: -0.3px;
+    
+    /* This tiny shadow makes the white text "pop" and look tack-sharp against the green */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
 }
 
-.checkout-price{
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
+.emptyCart{
+
+    text-align: center;
+
+    margin-top: 200px;
+
+    color: gray;
+
+    font-size: 22px;
+
+}
+
+.disabledButton{
+
+    opacity: 0.7;
+
+    pointer-events: none;
+
 }

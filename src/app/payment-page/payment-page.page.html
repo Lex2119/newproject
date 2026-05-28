@@ -1,23 +1,78 @@
+<!-- payment-page.page.html -->
+
 <ion-content [fullscreen]="true" class="paymentBackground">
 
   <div class="paymentContainer">
 
-    <h1 class="paymentTitle">
-      Payment
-    </h1>
+    <!-- Header -->
+    <div class="topSection">
 
+      <h1 class="paymentTitle">
+        Checkout
+      </h1>
+
+
+    </div>
+
+    <!-- Card Design -->
+    <div class="fakeCard">
+
+      <div class="cardTop">
+
+        <div class="chip"></div>
+
+        <div class="visaText">
+          VISA
+        </div>
+
+      </div>
+
+      <div class="cardNumberDisplay">
+        {{ cardNumber || '**** **** **** ****' }}
+      </div>
+
+      <div class="cardBottom">
+
+        <div>
+
+          <p class="smallTitle">Card Holder</p>
+
+          <p class="cardText">
+            {{ cardName || 'YOUR NAME' }}
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="smallTitle">Expires</p>
+
+          <p class="cardText">
+            {{ expiry || 'MM/YY' }}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Payment Form -->
     <div class="cardBox">
 
       <input
         type="text"
         placeholder="Card Number"
         class="paymentInput"
+        maxlength="19"
+        [(ngModel)]="cardNumber"
       >
 
       <input
         type="text"
         placeholder="Card Holder Name"
         class="paymentInput"
+        [(ngModel)]="cardName"
       >
 
       <div class="rowInput">
@@ -26,23 +81,59 @@
           type="text"
           placeholder="MM/YY"
           class="smallInput"
+          maxlength="5"
+          [(ngModel)]="expiry"
         >
 
         <input
-          type="text"
+          type="password"
           placeholder="CVV"
           class="smallInput"
+          maxlength="3"
+          [(ngModel)]="cvv"
         >
 
       </div>
 
     </div>
 
-    <div class="payButton" (click)="PayNow()">
+    <!-- Order Summary -->
+    <div class="summaryBox">
 
-      Pay RM{{GetTotalPrice()}}
+      <div class="summaryRow">
+        <span>Items</span>
+        <span>{{CartList.length}}</span>
+      </div>
+
+      <div class="summaryRow">
+        <span>Total</span>
+        <span class="totalPrice">
+          RM {{GetTotalPrice()}}
+        </span>
+      </div>
 
     </div>
+
+    <!-- Pay Button -->
+    <div
+      class="payButton"
+      (click)="PayNow()"
+    >
+
+      <div *ngIf="!isLoading">
+        Pay RM {{GetTotalPrice()}}
+      </div>
+
+      <div *ngIf="isLoading">
+        Processing Payment...
+      </div>
+
+    </div>
+
+    <!-- Stripe Text -->
+    <p class="stripeText">
+      Powered by Stripe
+    </p>
 
   </div>
 

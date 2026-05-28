@@ -10,16 +10,16 @@ import { Router } from '@angular/router';
 })
 export class CartPagePage implements OnInit {
 
-  CartList : any;
+  CartList : any[] = [];
 
-  constructor(
-    private product: Product,
-    private router: Router
-  ) {
-
-    this.CartList = product.getCartList();
-
+  constructor(private product: Product,private router: Router) {
   }
+
+ionViewWillEnter(){
+
+  this.CartList = this.product.getCartList();
+
+}
 
   increaseQty(item: any) {
 
@@ -48,6 +48,10 @@ export class CartPagePage implements OnInit {
 
   GetTotalPrice(){
 
+    if(!this.CartList){
+      return 0;
+    }
+
     let total = 0;
 
     this.CartList.forEach((item:any) => {
@@ -61,13 +65,22 @@ export class CartPagePage implements OnInit {
   }
 
   Checkout(){
-
-
+    
     this.CartList = this.product.getCartList();
+    
+    if(this.CartList.length <= 0){
+      return;
 
+    }
     this.router.navigate(['/payment-page']);
 
   }
+
+  CanCheckout(){
+
+  return this.CartList.length > 0;
+
+}
 
   ngOnInit() {
   }

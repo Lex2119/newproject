@@ -147,7 +147,7 @@ export class Product {
 
     });
 
-    this.cartlist = [];
+    this.cartlist.length = 0;
 
   }
 

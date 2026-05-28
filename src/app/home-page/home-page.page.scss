@@ -1,123 +1,225 @@
-.mainbackground{
-    background-color: rgb(187, 185, 185);
-    padding: 10px 16px;
+/* Overall page setup - Deepened margins on the left and right */
+.mainbackground {
+  --background: #f8f9fa; /* Soft light-grey background */
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  --padding-start: 12px; /* Deep left margin */
+  --padding-end: 12px;   /* Deep right margin */
 }
-.ProfileImage{
-    width: 90%;
-    height: 60px;
-    margin: 8px;
-    border-radius: 10px;
-}
-.WelcomeMsg{
-    font-weight: bold;
-    font-size: 23px;
-    color:black;
-    display: block;
-}
-.WelcomeMsg2{
-    font-size: 14px;
-    color: rgb(119, 119, 119);
-}
-.MenuIcon{
-    width: 70%;
-    height: 60px;
-    margin: 8px;
-    border-radius: 10px;
-}
-.MenuTextSession{
-    padding: 10px 0px;
-}
-.MenuFrame{
-    background-color: white;
-    padding: 0px;
-}
-.HorizontalBanner{
-    height: 202px;
-    background-color: rgb(236, 52, 20);
-    border-radius: 15px;
-    margin: 0px 16px;
-}
-.TitleText{
-    font-weight: bold;
-    font-size: 28px;
-    margin: 10px 16px;
-}
-.SeeAllText{
-    color: gray;
-}
-.DividerArea{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 9px; 
-}
-.CategoriesList{
-    height: 50px;
-    width: 140px;
-    background-color: rgb(236, 52, 20);
-    margin: 0px 16px;
-}
-.ProductFrame{
-    width: 90%;
-    height: 260px;
-    margin: 5%;
-    padding: 5px;
-    margin: 5px 3px 5px 3px;
-
-}
-.ProductRow{
-    padding: 5px 9px;
-    height: 400px;
-}
-.RmvPadding{
-    padding: 0px;
+/* User Profile Frame */
+.MenuFrame {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 4px 0px 20px 0px; 
+  padding: 10px 8px;
 }
 
-.ProductImage{
-    height: 140px;
+.ProfileImage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%; 
+  object-fit: cover;
+  margin-left: 6px;
 }
 
-.AddtoCartBtn{
-    position: absolute;
-    width: 13%;
-    height: 7%;
-    top: 50%;
-    left: 40%;
-    --border-radius: 50%;
-}          
-
-.horizontal-list{
-    display: flex;
-    overflow-x: auto;
-    gap:12px;
-
-    scroll-snap-type: x mandatory;
+.MenuTextSession {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6px;
 }
 
-.horizontal-list ::-webkit-scrollbar{
-    display: none;
+.WelcomeMsg {
+  font-weight: 800;
+  font-size: 18px;
+  color: #2b2b2b;
 }
 
-.card{
-    min-width: 150px;
-    height: 60px;
-    background-color: rgb(206, 206, 206);
-    border-radius: 12px;
-    padding: 10p;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-}
-.card-img{
-    width: 100%;
-    border-radius: 10px;
+.WelcomeMsg2 {
+  font-size: 12px;
+  color: #8e8e93;
+  margin-top: 2px;
 }
 
-.card:active{
-    transform: scale(0.93);
+.MenuIcon {
+  --color: #ff4724;
+  font-size: 20px;
 }
-.card.selected{
-    background: linear-gradient(90deg,rgba(237, 61, 7, 1) 0%, rgba(224, 144, 114, 1) 100%, rgba(247, 206, 183, 1) 100%);
-    color: white;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px 0px rgba(0,0,0,2);
+
+/* Banner Design */
+.HorizontalBanner {
+  height: 140px;
+  background: linear-gradient(135deg, #ff4724 0%, #ff8266 100%);
+  border-radius: 16px;
+  margin: 0 0 24px 0; 
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 8px 16px rgba(255, 71, 36, 0.2);
+}
+
+.BannerContent h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.BannerContent p {
+  font-size: 14px;
+  margin: 4px 0 0 0;
+  opacity: 0.9;
+}
+
+/* Sections Headers */
+.DividerArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 2px 12px 2px; 
+}
+
+.TitleText {
+  font-weight: 700;
+  font-size: 20px;
+  color: #222;
+}
+
+.SeeAllText {
+  color: #ff4724;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Categories Horizontal List */
+.horizontal-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 4px 2px 24px 2px; 
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-list::-webkit-scrollbar {
+  display: none; 
+}
+
+.card {
+  min-width: 105px;
+  height: 90px;
+  background-color: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.category-icon {
+  font-size: 24px;
+  color: #ff4724;
+}
+
+.card h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  margin: 0;
+}
+
+.card:active {
+  transform: scale(0.95);
+}
+
+.card.selected {
+  background: #ff4724;
+  color: white;
+  border-color: #ff4724;
+  box-shadow: 0 6px 14px rgba(255, 71, 36, 0.3);
+}
+
+.card.selected h3, 
+.card.selected .category-icon {
+  color: white;
+}
+
+/* Products Layout Framework */
+.ProductRow {
+  margin: 0 -6px; /* Counter-acts item padding to keep grid locked to the page margins */
+}
+
+.RmvPadding {
+  padding: 6px; 
+}
+
+.ProductWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ProductFrame {
+  width: 100%;
+  margin: 0;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #f5f5f5;
+}
+
+.ImgContainer {
+  width: 100%;
+  height: 120px;
+  background: #fcfcfc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProductImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProductInfo {
+  padding: 12px 10px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.NameText {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PriceText {
+  font-weight: 700;
+  font-size: 15px;
+  color: #ff4724;
+}
+
+.AddtoCartBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  margin: 0;
+  width: 32px;
+  height: 32px;
+  --border-radius: 50%;
+  --box-shadow: 0 4px 8px rgba(244, 161, 0, 0.3);
+  font-size: 16px;
 }

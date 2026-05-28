@@ -1,3 +1,5 @@
+// payment-page.page.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../database/product';
 import { Router } from '@angular/router';
@@ -10,7 +12,14 @@ import { Router } from '@angular/router';
 })
 export class PaymentPagePage implements OnInit {
 
- CartList : any;
+  CartList : any;
+
+  cardNumber = '';
+  cardName = '';
+  expiry = '';
+  cvv = '';
+
+  isLoading = false;
 
   constructor(
     private product: Product,
@@ -37,9 +46,37 @@ export class PaymentPagePage implements OnInit {
 
   PayNow(){
 
-    this.product.checkoutCart();
+    if(
+      this.cardNumber == '' ||
+      this.cardName == '' ||
+      this.expiry == '' ||
+      this.cvv == ''
+    ){
+      alert("Please fill all payment details");
+      return;
+    }
 
-    this.router.navigate(['/order-history-page']);
+    this.isLoading = true;
+
+    setTimeout(() => {
+
+      this.isLoading = false;
+
+      let transactionId =
+      "STRIPE-" +
+      Math.floor(Math.random() * 1000000);
+
+      alert(
+        "Payment Successful!\n\n" +
+        "Transaction ID: " +
+        transactionId
+      );
+
+      this.product.checkoutCart();
+
+      this.router.navigate(['/order-history-page']);
+
+    }, 2500);
 
   }
 

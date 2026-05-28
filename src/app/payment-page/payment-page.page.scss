@@ -1,31 +1,119 @@
+/* payment-page.page.scss */
+
 .paymentBackground{
-    --ion-background-color: #f5f5f5;
+    --ion-background-color: #f5f5f7;
 }
 
 .paymentContainer{
-    padding: 30px;
+    padding: 25px;
+}
+
+.topSection{
+    margin-bottom: 25px;
 }
 
 .paymentTitle{
-    font-size: 32px;
+    font-size: 34px;
     font-weight: bold;
-    margin-bottom: 30px;
+    color: #1d1d1f;
+    margin: 0;
 }
 
+
+/* Fake Credit Card */
+
+.fakeCard{
+
+    width: 100%;
+    height: 220px;
+
+    border-radius: 30px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+      135deg,
+      #635bff,
+      #8b7dff
+    );
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 10px 25px rgba(99,91,255,0.3);
+
+}
+
+.cardTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chip{
+    width: 55px;
+    height: 40px;
+    background-color: gold;
+    border-radius: 10px;
+}
+
+.visaText{
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.cardNumberDisplay{
+    font-size: 26px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.cardBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallTitle{
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.cardText{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Form */
+
 .cardBox{
+
     background-color: white;
+
     border-radius: 25px;
+
     padding: 20px;
 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
 }
 
 .paymentInput{
+
     width: 100%;
+
     height: 55px;
 
     border: none;
-    background-color: #f5f5f5;
+
+    background-color: #f5f5f7;
 
     border-radius: 15px;
 
@@ -34,6 +122,7 @@
     padding: 15px;
 
     font-size: 16px;
+
 }
 
 .rowInput{
@@ -42,27 +131,69 @@
 }
 
 .smallInput{
+
     flex: 1;
 
     height: 55px;
 
     border: none;
 
-    background-color: #f5f5f5;
+    background-color: #f5f5f7;
 
     border-radius: 15px;
 
     padding: 15px;
 
     font-size: 16px;
+
 }
 
+/* Summary */
+
+.summaryBox{
+
+    background-color: white;
+
+    margin-top: 25px;
+
+    border-radius: 25px;
+
+    padding: 20px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+.summaryRow{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+
+}
+
+.totalPrice{
+    font-weight: bold;
+    color: #635bff;
+}
+
+/* Button */
+
 .payButton{
+
     margin-top: 30px;
 
     height: 60px;
 
-    background-color: #635bff;
+    background: linear-gradient(
+      135deg,
+      #635bff,
+      #7a73ff
+    );
 
     border-radius: 20px;
 
@@ -77,4 +208,27 @@
     font-size: 20px;
 
     font-weight: bold;
+
+    box-shadow: 0 10px 20px rgba(99,91,255,0.3);
+
+    transition: 0.3s;
+
+}
+
+.payButton:active{
+    transform: scale(0.97);
+}
+
+/* Footer */
+
+.stripeText{
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: gray;
+
+    font-size: 14px;
+
 }

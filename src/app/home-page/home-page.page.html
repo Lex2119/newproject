@@ -1,79 +1,72 @@
-
-
 <ion-content [fullscreen]="true" class="mainbackground">
 
   <ion-card class="MenuFrame">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="2.5">
-            <img class="ProfileImage" src="https://placehold.co/200x200">
-          </ion-col>     
-          <ion-col size="6.5">
-            <div class="MenuTextSession">
-              <ion-label class="WelcomeMsg">r</ion-label>
-              <ion-label class="WelcomeMsg2"></ion-label>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <ion-button class="MenuIcon"  color="light" (click)="LinkToCart()">Settings</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="3">
+          <img class="ProfileImage" src="https://placehold.co/200x200" alt="Profile">
+        </ion-col>     
+        <ion-col size="7">
+          <div class="MenuTextSession">
+            <ion-label class="WelcomeMsg">Hello, Guest!</ion-label>
+            <ion-label class="WelcomeMsg2">Hungry for something delicious?</ion-label>
+          </div>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center">
+          <ion-button class="MenuIcon" color="dark" fill="clear" (click)="LinkToCart()">
+            <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
-  <ion-card class="HorizontalBanner"></ion-card>
+  <div class="HorizontalBanner">
+    <div class="BannerContent">
+      
+    </div>
+  </div>
 
   <div class="DividerArea">
-      <ion-label class="TitleText">
-    Categories
-      </ion-label>
-      <ion-label class="SeeAllText">See All</ion-label>
+    <ion-label class="TitleText">Categories</ion-label>
+    <ion-label class="SeeAllText">See All</ion-label>
   </div>
 
   <div class="horizontal-list">
-
     <div class="card" 
-    *ngFor="let item of categoriesList"
-    [class.selected]="selectedItem == item" 
-    (click)="selecteditem(item)">
-      <img src="">
+         *ngFor="let item of categoriesList"
+         [class.selected]="selectedItem == item" 
+         (click)="selecteditem(item)">
+      <ion-icon name="fast-food-outline" class="category-icon"></ion-icon>
       <h3>{{item.name}}</h3>
     </div>
-
   </div>
 
-
-    <div class="DividerArea">
-      <ion-label class="TitleText">
-    Products
-      </ion-label>
-      <ion-label class="SeeAllText">See All</ion-label>
+  <div class="DividerArea">
+    <ion-label class="TitleText">Popular Foods</ion-label>
+    <ion-label class="SeeAllText">See All</ion-label>
   </div>
 
-  <ion-grid>
-    <ion-row class="ProductRow">
-      <ion-col class="RmvPadding" size="6" *ngFor="let pair of myproductlist">
+<ion-grid class="ion-no-padding">
+  <ion-row class="ProductRow">
+    <ion-col size="6" class="RmvPadding" *ngFor="let pair of myproductlist">
+      <div class="ProductWrapper">
         <ion-card class="ProductFrame" (click)="ProductClick(pair.id)">
-          <div>
-            <img class="ProductImage" src="{{pair.image}}">
+          <div class="ImgContainer">
+            <img class="ProductImage" src="{{pair.image || 'https://placehold.co/400x300?text=Food'}}">
           </div>
-          
-          <div>
+          <div class="ProductInfo">
             <ion-label class="NameText">{{ pair.name }}</ion-label>
             <ion-label class="PriceText">${{ pair.price }}</ion-label>
           </div>
-          
         </ion-card>
-        
-        <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)"  >
-          <ion-icon slot="icon-only" name="bag-handle-outline" ></ion-icon>
-        </ion-button>
+          
+          <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </div>
       </ion-col>
-
     </ion-row>
-
   </ion-grid>
 
-
-  
 </ion-content>

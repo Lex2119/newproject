@@ -26,23 +26,6 @@ export class LoginPagePage implements OnInit {
       this.showError = true; 
     }
   }
-  
-onInputBlur() {
-  setTimeout(() => {
-
-    // Remove focus from input
-    (document.activeElement as HTMLElement)?.blur();
-
-    // Reset scroll position
-    window.scrollTo(0, 0);
-
-    // Ionic content scroll reset
-    if (this.content) {
-      this.content.scrollToTop(300);
-    }
-
-  }, 200);
-}
 
   ngOnInit() {
   }

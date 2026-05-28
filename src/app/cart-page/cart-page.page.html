@@ -6,11 +6,16 @@
       <div class="back-icon-container" routerLink="/home-page">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </div>
-      <span class="header-title">My Cart</span>
+      <span class="header-title">Cart</span>
       <div class="header-spacer"></div> </div>
 
     <div class="scrollable-list">
       <ion-grid>
+        <div *ngIf="CartList.length <= 0" class="emptyCart">
+
+          Your cart is empty
+
+        </div>
         <ion-row class="CartItemRow" *ngFor="let item of CartList">
           
           <ion-col size="5.5" class="LeftCol">
@@ -42,18 +47,17 @@
   </div>
 
   <div class="BottomSession">
-    <div class="CheckoutBox" (click)="Checkout()">
+  
+    <div class="PriceSummaryBlock">
+      <span class="total-label">Total Payment</span>
+      <span class="checkout-price">RM{{GetTotalPrice()}}</span>
+    </div>
 
+    <div class="CheckoutBox" [class.disabledButton]="!CanCheckout()" (click)="Checkout()">
       <div class="checkout-text">
         Checkout
       </div>
-
-      <div class="checkout-price">
-        RM{{GetTotalPrice()}}
-      </div>
-
     </div>
-
 
   </div>
 
