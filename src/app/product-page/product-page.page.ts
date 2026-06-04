@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../database/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var Swal: any;
 
@@ -16,7 +16,7 @@ export class ProductPagePage implements OnInit {
   MyProduct: any;
   Quantity: number = 1;
 
-  constructor(private product: Product, private GetRoute: ActivatedRoute) { 
+  constructor(private product: Product, private GetRoute: ActivatedRoute, private router: Router) { 
     const id = this.GetRoute.snapshot.paramMap.get("productid");
     
     if (id == null) {
@@ -37,9 +37,7 @@ export class ProductPagePage implements OnInit {
   }
 
   NoticeAddtocart() {
-
     this.isModelOpen = true;
-    
   }
   
   onModelDismiss(){
@@ -56,25 +54,46 @@ export class ProductPagePage implements OnInit {
     }
     else{
       this.product.Addtocart({
-      MyProduct: this.MyProduct,
-      Quantity: this.Quantity,
-    });
+        MyProduct: this.MyProduct,
+        Quantity: this.Quantity,
+      });
 
-    Swal.fire({
-      title: 'Added to Cart!',
-      text: `${this.Quantity}x ${this.MyProduct.name} successfully added.`,
-      icon: 'success',
-      iconColor: '#4caf50', 
-      confirmButtonText: 'Awesome',
-      confirmButtonColor: 'rgb(236, 52, 20)', 
-      heightAuto: false, 
-      customClass: {
-        popup: 'swal2-ionic-fix'
-      }
-    });
+      Swal.fire({
+        title: 'Added to Cart!',
+        text: `${this.Quantity}x ${this.MyProduct.name} successfully added.`,
+        icon: 'success',
+        iconColor: '#4caf50', 
+        confirmButtonText: 'Awesome',
+        confirmButtonColor: 'rgb(236, 52, 20)', 
+        heightAuto: false, 
+        customClass: {
+          popup: 'swal2-ionic-fix'
+        }
+      });
     }
     this.isModelOpen = false;
   }
+
+  LinkToHome() {
+    this.router.navigate(['/home-page']);
+  }
+
+  LinkToShop() {
+    this.router.navigate(['/shop-page']);
+  }
+
+  LinkToOrderHistory() {
+    this.router.navigate(['/order-history-page']);
+  }
+
+  LinkToCart() {
+    this.router.navigate(['/cart-page']);
+  }
+
+  LinkToProfile() {
+    this.router.navigate(['/profile-page']);
+  }
+
   ngOnInit() {
   }
 

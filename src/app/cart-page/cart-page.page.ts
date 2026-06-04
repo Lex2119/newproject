@@ -12,7 +12,7 @@ export class CartPagePage implements OnInit {
 
   CartList : any[] = [];
 
-  constructor(private product: Product,private router: Router) {
+  constructor(private product: Product, private router: Router) {
   }
 
 ionViewWillEnter(){
@@ -78,9 +78,29 @@ ionViewWillEnter(){
 
   CanCheckout(){
 
-  return this.CartList.length > 0;
+    return this.CartList.length > 0;
 
-}
+  }
+
+  LinkToHome() {
+    this.router.navigate(['/home-page']);
+  }
+
+  LinkToShop() {
+    this.router.navigate(['/shop-page']);
+  }
+
+  LinkToOrderHistory() {
+    this.router.navigate(['/order-history-page']);
+  }
+
+  LinkToCart() {
+    this.router.navigate(['/cart-page']);
+  }
+
+  LinkToProfile() {
+    this.router.navigate(['/profile-page']);
+  }
 
   ngOnInit() {
   }

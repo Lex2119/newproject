@@ -34,6 +34,14 @@ const routes: Routes = [
     path: 'payment-page',
     loadChildren: () => import('./payment-page/payment-page.module').then( m => m.PaymentPagePageModule)
   },
+  {
+    path: 'shop-page',
+    loadChildren: () => import('./shop-page/shop-page.module').then( m => m.ShopPagePageModule)
+  },
+  {
+    path: 'profile-page',
+    loadChildren: () => import('./profile-page/profile-page.module').then( m => m.ProfilePagePageModule)
+  },
 
 ];
 

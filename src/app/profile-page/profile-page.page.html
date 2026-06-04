@@ -1,0 +1,107 @@
+<ion-content [fullscreen]="true" class="mainbackground">
+  <div class="TopSession">
+    
+    <div class="custom-header">
+      <div class="back-icon-container" routerLink="/home-page">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+      <span class="header-title">My Profile</span>
+      <div class="header-spacer"></div> 
+    </div>
+
+    <div class="scrollable-list">
+      
+      <div class="profile-hero-card">
+        <div class="avatar-wrapper">
+          <img [src]="UserProfile.avatar" alt="User Profile Picture">
+        </div>
+        <h1 class="user-fullname">{{ UserProfile.name }}</h1>
+        <p class="user-meta-sub">{{ UserProfile.email }}</p>
+      </div>
+
+      <div class="settings-menu-group">
+        
+        <div class="menu-item-row" (click)="LinkToOrderHistory()">
+          <div class="left-icon-box orders-accent">
+            <ion-icon name="receipt-outline"></ion-icon>
+          </div>
+          <div class="menu-label-block">
+            <span class="menu-main-title">Order History</span>
+            <span class="menu-subtitle">View past transactions and receipts</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item-row" (click)="LinkToCart()">
+          <div class="left-icon-box cart-accent">
+            <ion-icon name="cart-outline"></ion-icon>
+          </div>
+          <div class="menu-label-block">
+            <span class="menu-main-title">My Cart Basket</span>
+            <span class="menu-subtitle">Check pending food choices</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item-row">
+          <div class="left-icon-box location-accent">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+          <div class="menu-label-block">
+            <span class="menu-main-title">Delivery Address</span>
+            <span class="menu-subtitle">{{ UserProfile.deliveryAddress }}</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item-row">
+          <div class="left-icon-box phone-accent">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+          <div class="menu-label-block">
+            <span class="menu-main-title">Contact Number</span>
+            <span class="menu-subtitle">{{ UserProfile.phone }}</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer [translucent]="true" class="persistent-footer">
+  <ion-toolbar class="footer-toolbar">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="custom-tab-bar">
+        
+        <ion-tab-button (click)="LinkToHome()">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToShop()">
+          <ion-icon name="storefront-outline"></ion-icon>
+          <ion-label>Shop</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToOrderHistory()">
+          <ion-icon name="receipt-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToCart()">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToProfile()">
+          <ion-icon [name]="isCurrentPage ? 'person' : 'person-outline'" class="active-tab-override"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

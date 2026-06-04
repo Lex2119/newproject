@@ -51,6 +51,22 @@ categoriesList = [
     this.router.navigate(['/cart-page']);
   }
 
+  LinkToHome() {
+    this.router.navigate(['/home-page']); // adjust your home route dynamically here if named differently
+  }
+
+  LinkToShop() {
+    this.router.navigate(['/shop-page']); // placeholder click method logic 
+  }
+
+  LinkToOrderHistory() {
+    this.router.navigate(['/order-history-page']); // Brand new method mapping to order history layout
+  }
+
+  LinkToProfile() {
+    this.router.navigate(['/profile-page']); // placeholder click method logic
+  }
+
   ngOnInit() {
   }
 

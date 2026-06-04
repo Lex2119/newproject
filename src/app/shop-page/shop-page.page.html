@@ -1,0 +1,82 @@
+<ion-header [translucent]="true" class="shop-header">
+  <ion-toolbar class="search-toolbar">
+    <ion-searchbar 
+      placeholder="Search ..." 
+      class="custom-searchbar"
+      animated="true"
+      (ionInput)="onSearchChange($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="mainbackground">
+
+  <div class="DividerArea">
+    <ion-label class="TitleText">All Products</ion-label>
+    <ion-label class="ResultsCount">{{ filteredProductList.length }} Items</ion-label>
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ProductRow">
+      <ion-col size="6" class="RmvPadding" *ngFor="let pair of filteredProductList">
+        <div class="ProductWrapper">
+          <ion-card class="ProductFrame" (click)="ProductClick(pair.id)">
+            <div class="ImgContainer">
+              <img class="ProductImage" src="{{pair.image || 'https://placehold.co/400x300?text=Food'}}">
+            </div>
+            <div class="ProductInfo">
+              <ion-label class="NameText">{{ pair.name }}</ion-label>
+              <ion-label class="PriceText">${{ pair.price }}</ion-label>
+            </div>
+          </ion-card>
+            
+          <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="filteredProductList.length === 0">
+      <ion-col size="12" class="ion-text-center no-results-container">
+        <ion-icon name="search-off" class="no-results-icon"></ion-icon>
+        <h4>No foods found</h4>
+        <p>Try refining your search keyword entries</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer [translucent]="true" class="persistent-footer">
+  <ion-toolbar class="footer-toolbar">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="custom-tab-bar">
+        <ion-tab-button (click)="LinkToHome()">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToShop()">
+          <ion-icon name="storefront" class="active-tab-override"></ion-icon>
+          <ion-label>Shop</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToOrderHistory()">
+          <ion-icon name="receipt-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToCart()">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToProfile()">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

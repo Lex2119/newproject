@@ -13,7 +13,7 @@
           </div>
         </ion-col>
         <ion-col size="2" class="ion-text-center">
-          <ion-button class="MenuIcon" color="dark" fill="clear" (click)="LinkToCart()">
+          <ion-button class="MenuIcon" color="dark" fill="clear" (click)="LinkToProfile()">
             <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-col>
@@ -47,26 +47,68 @@
     <ion-label class="SeeAllText">See All</ion-label>
   </div>
 
-<ion-grid class="ion-no-padding">
-  <ion-row class="ProductRow">
-    <ion-col size="6" class="RmvPadding" *ngFor="let pair of myproductlist">
-      <div class="ProductWrapper">
-        <ion-card class="ProductFrame" (click)="ProductClick(pair.id)">
-          <div class="ImgContainer">
-            <img class="ProductImage" src="{{pair.image || 'https://placehold.co/400x300?text=Food'}}">
-          </div>
-          <div class="ProductInfo">
-            <ion-label class="NameText">{{ pair.name }}</ion-label>
-            <ion-label class="PriceText">${{ pair.price }}</ion-label>
-          </div>
-        </ion-card>
-          
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ProductRow">
+      <ion-col size="6" class="RmvPadding" *ngFor="let pair of myproductlist.slice(0, 6)">
+        <div class="ProductWrapper">
+          <ion-card class="ProductFrame" (click)="ProductClick(pair.id)">
+            <div class="ImgContainer">
+              <img class="ProductImage" src="{{pair.image || 'https://placehold.co/400x300?text=Food'}}">
+            </div>
+            <div class="ProductInfo">
+              <ion-label class="NameText">{{ pair.name }}</ion-label>
+              <ion-label class="PriceText">${{ pair.price }}</ion-label>
+            </div>
+          </ion-card>
+            
           <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
             <ion-icon slot="icon-only" name="add"></ion-icon>
           </ion-button>
         </div>
       </ion-col>
     </ion-row>
+
+    <ion-row *ngIf="myproductlist && myproductlist.length > 6">
+      <ion-col size="12" class="RmvPadding">
+        <ion-button class="ViewMoreBtn" expand="block" fill="solid" (click)="LinkToShop()">
+          <ion-label>View More</ion-label>
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 </ion-content>
+
+<ion-footer [translucent]="true" class="persistent-footer">
+  <ion-toolbar class="footer-toolbar">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="custom-tab-bar">
+        <ion-tab-button (click)="LinkToHome()">
+          <ion-icon name="home" class="active-tab-override"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToShop()">
+          <ion-icon name="storefront-outline"></ion-icon>
+          <ion-label>Shop</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToOrderHistory()">
+          <ion-icon name="receipt-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToCart()">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="LinkToProfile()">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

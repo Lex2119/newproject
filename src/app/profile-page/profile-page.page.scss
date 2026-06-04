@@ -1,0 +1,246 @@
+.mainbackground {
+    --ion-background-color: #000000;
+}
+
+.TopSession {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #f8f9fa; /* Sleek light background canvas for contrast */
+    border-radius: 0px 0px 0px 60px;
+    z-index: 10;
+    transform: translateY(-100%);
+    animation: slideInTop 1s ease-out forwards;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 56px; /* Avoid overlapping the persistent footer window */
+}
+
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+
+    .back-icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent; 
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        color: rgb(236, 52, 20); 
+        cursor: pointer;
+        transition: transform 0.1s ease;
+        
+        ion-icon {
+            font-size: 28px; 
+        }
+        
+        &:active {
+            transform: scale(0.9); 
+        }
+    }
+
+    .header-title {
+        color: #222222; 
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+    }
+
+    .header-spacer {
+        width: 42px; 
+    }
+}
+
+.scrollable-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 0 24px 0;
+}
+
+/* Premium Profile Hero Card Container */
+.profile-hero-card {
+    background: linear-gradient(135deg, rgb(255, 87, 34) 0%, rgb(236, 52, 20) 100%);
+    padding: 32px 24px;
+    text-align: center;
+    border-radius: 0 0 0 45px;
+    box-shadow: 0 8px 24px rgba(236, 52, 20, 0.18);
+    margin-bottom: 24px;
+
+    .avatar-wrapper {
+        width: 95px;
+        height: 95px;
+        margin: 0 auto 14px auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #ffffff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .user-fullname {
+        font-size: 22px;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0 0 4px 0;
+        letter-spacing: -0.2px;
+    }
+
+    .user-meta-sub {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        font-weight: 400;
+    }
+}
+
+/* Settings List Menu Item Options */
+.settings-menu-group {
+    background-color: #ffffff;
+    margin: 0 16px;
+    border-radius: 20px;
+    padding: 6px 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.menu-item-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:active {
+        background-color: #f9f9f9;
+    }
+
+    .left-icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 14px;
+
+        ion-icon {
+            font-size: 20px;
+        }
+
+        /* Context Color Accents for Food Items Architecture Styling */
+        &.orders-accent { background-color: #fff0ec; color: #ff5722; }
+        &.cart-accent { background-color: #e8f5e9; color: #4caf50; }
+        &.location-accent { background-color: #e3f2fd; color: #2196f3; }
+        &.phone-accent { background-color: #fffde7; color: #fbc02d; }
+    }
+
+    .menu-label-block {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .menu-main-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 2px;
+        }
+
+        .menu-subtitle {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 400;
+        }
+    }
+
+    .row-chevron {
+        color: #cbd5e0;
+        font-size: 18px;
+    }
+}
+
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom Persistent Footer Rules */
+.persistent-footer {
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    border-top: 1px solid #e0e0e0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 30;
+}
+
+.footer-toolbar {
+    --background: #eeeeee; 
+    --min-height: 56px;
+    padding: 0;
+}
+
+.custom-tab-bar {
+    --background: #eeeeee; 
+    border-top: none;
+    height: 56px;
+
+    ion-tab-button {
+        /* Forces ALL tab elements to use your brand color at all times */
+        --color: #ff4724 !important; 
+        --color-selected: #ff4724 !important; 
+        color: #ff4724 !important;
+        font-size: 10px; 
+        font-weight: 600;
+        position: relative;
+
+        ion-icon {
+            font-size: 20px; 
+            margin-bottom: 2px;
+            color: #ff4724 !important; /* Forces the graphic stroke/fill layer color */
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            height: 50%; 
+            width: 1px;
+            background-color: #d1d1d1; 
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+    }
+}
+
+/* Make the filled active icon pop out slightly more */
+.active-tab-override {
+    font-size: 23px !important;
+}

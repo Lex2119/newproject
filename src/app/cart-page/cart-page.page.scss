@@ -4,7 +4,7 @@
 
 .TopSession {
     position: absolute;
-    height: 87%;
+    height: 83.5%; /* Adjusted to scale content neatly with the newly implemented footer space */
     width: 100%;
     background-color: #ffffff;
     border-radius: 0px 0px 0px 60px;
@@ -190,10 +190,10 @@
 
 .BottomSession {
     position: absolute;
-    bottom: 0;
+    bottom: 56px; /* Shifted up exactly 56px to clear room cleanly for our persistent footer layout */
     right: 0;
     width: 100%;
-    height: 13%; 
+    height: 10%; 
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -211,7 +211,7 @@
     flex-grow: 1; 
     padding-right: 12px;
 
-        position: relative;
+    position: relative;
     top: -13px; 
 }
 
@@ -257,7 +257,6 @@
     letter-spacing: -0.3px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
     
-    // Nudges the text upwards without altering the parent layout
     position: relative;
     top: -10px; 
 }
@@ -272,4 +271,55 @@
 .disabledButton {
     opacity: 0.7;
     pointer-events: none;
+}
+
+/* Custom Persistent Footer Rules - Configured safely for 5 Columns */
+.persistent-footer {
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-toolbar {
+    --background: #eeeeee; /* Light Gray background container */
+    --min-height: 56px;
+    padding: 0;
+}
+
+.custom-tab-bar {
+    --background: #eeeeee; /* Gray color scheme background */
+    border-top: none;
+    height: 56px;
+
+    ion-tab-button {
+        --color: #ff4724; /* Base icon and text color updated to your exact Orangered brand color */
+        --color-selected: #ff4724; 
+        font-size: 10px; /* Optimized layout size for 5 columns */
+        font-weight: 600;
+        position: relative;
+
+        ion-icon {
+            font-size: 20px; /* Optimized layout size for 5 columns */
+            margin-bottom: 2px;
+        }
+
+        /* Subtle vertical line in between buttons */
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            height: 50%; /* Center aligned and takes up half the button height */
+            width: 1px;
+            background-color: #d1d1d1; /* Soft gray line to contrast nicely against #eeeeee background */
+        }
+
+        /* Prevents trailing line on the final button */
+        &:last-child::after {
+            display: none;
+        }
+    }
+}
+
+.active-tab-override {
+    font-size: 23px !important;
 }

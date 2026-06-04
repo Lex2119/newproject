@@ -223,3 +223,71 @@
   --box-shadow: 0 4px 8px rgba(244, 161, 0, 0.3);
   font-size: 16px;
 }
+
+/* 12-Size Full Width View More Button Properties (Colors Reversed) */
+.ViewMoreBtn {
+  margin: 12px 0 24px 0;
+  --background: #ff4724; /* Background is now the primary branding color */
+  --color: #ffffff;      /* Words and text are now crisp white */
+  font-weight: 700;
+  font-size: 15px;
+  height: 48px;
+  --border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 71, 36, 0.2);
+
+  ion-icon {
+    font-size: 18px;
+    margin-left: 6px;
+  }
+}
+
+/* Custom Persistent Footer Rules */
+.persistent-footer {
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-toolbar {
+  --background: #eeeeee;
+  --min-height: 56px;
+  padding: 0;
+}
+
+.custom-tab-bar {
+  --background: #eeeeee;
+  border-top: none;
+  height: 56px;
+
+  ion-tab-button {
+    --color: #ff4724; 
+    --color-selected: #ff4724; 
+    font-size: 10px;
+    font-weight: 600;
+    position: relative;
+
+    ion-icon {
+      font-size: 20px;
+      margin-bottom: 2px;
+      transition: font-size 0.15s ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background-color: #d1d1d1; 
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+
+/* Forces the active state icon style to cleanly match across views */
+.active-tab-override {
+  font-size: 23px !important;
+}

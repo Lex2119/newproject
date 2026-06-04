@@ -1,0 +1,191 @@
+/* Overall page setup */
+.mainbackground {
+  --background: #f8f9fa; /* Soft light-grey background */
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  --padding-start: 12px; /* Deep left margin */
+  --padding-end: 12px;   /* Deep right margin */
+}
+
+/* Header & Search Styles */
+.shop-header {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.search-toolbar {
+  --background: #ffffff;
+  padding: 8px 6px;
+}
+
+.custom-searchbar {
+  --background: #f1f3f4;
+  --placeholder-color: #8e8e93;
+  --icon-color: #ff4724; /* Search icon highlights in brand orangered */
+  --border-radius: 12px;
+  padding: 0;
+}
+
+/* Sections Headers */
+.DividerArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 2px 16px 2px; 
+}
+
+.TitleText {
+  font-weight: 700;
+  font-size: 20px;
+  color: #222;
+}
+
+.ResultsCount {
+  color: #8e8e93;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Products Layout Framework */
+.ProductRow {
+  margin: 0 -6px; 
+}
+
+.RmvPadding {
+  padding: 6px; 
+}
+
+.ProductWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ProductFrame {
+  width: 100%;
+  margin: 0;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #f5f5f5;
+}
+
+.ImgContainer {
+  width: 100%;
+  height: 120px;
+  background: #fcfcfc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProductImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProductInfo {
+  padding: 12px 10px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.NameText {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PriceText {
+  font-weight: 700;
+  font-size: 15px;
+  color: #ff4724;
+}
+
+.AddtoCartBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  margin: 0;
+  width: 32px;
+  height: 32px;
+  --border-radius: 50%;
+  --box-shadow: 0 4px 8px rgba(244, 161, 0, 0.3);
+  font-size: 16px;
+}
+
+/* Empty State Styling */
+.no-results-container {
+  padding: 60px 20px;
+  
+  .no-results-icon {
+    font-size: 54px;
+    color: #ccced0;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-weight: 700;
+    color: #444;
+    margin: 0 0 4px 0;
+  }
+  p {
+    font-size: 13px;
+    color: #8e8e93;
+    margin: 0;
+  }
+}
+
+/* Custom Persistent Footer Rules */
+.persistent-footer {
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-toolbar {
+  --background: #eeeeee;
+  --min-height: 56px;
+  padding: 0;
+}
+
+.custom-tab-bar {
+  --background: #eeeeee;
+  border-top: none;
+  height: 56px;
+
+  ion-tab-button {
+    --color: #ff4724; 
+    --color-selected: #ff4724; 
+    font-size: 10px;
+    font-weight: 600;
+    position: relative;
+
+    ion-icon {
+      font-size: 20px;
+      margin-bottom: 2px;
+      transition: font-size 0.15s ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background-color: #d1d1d1; 
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+
+/* Forces the active state icon style to cleanly match across views */
+.active-tab-override {
+  font-size: 23px !important;
+}
