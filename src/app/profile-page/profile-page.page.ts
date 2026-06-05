@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../database/user'; // Import your UserService to access user data
 
 @Component({
   selector: 'app-profile-page',
@@ -10,20 +11,17 @@ import { Router } from '@angular/router';
 export class ProfilePagePage implements OnInit {
 
   isCurrentPage: boolean = true;
-  // Hard-coded Simulated User Profile Mock Data Data Payload
-  UserProfile = {
-    name: 'Lim Zhi Xian',
-    email: 'll@gmail.com',
-    phone: '+60 12-345 6789',
-    deliveryAddress: 'Lot 12, Jalan Jenai, Kuala Lumpur',
-    avatar: 'https://st4.depositphotos.com/3864435/27060/i/600/depositphotos_270605520-stock-photo-default-avatar-profile-icon-grey.jpg'
-  };
+  
+  // Declared empty; will be safely populated dynamically from your central database file
+  UserProfile: any = {};
 
-  constructor(private router: Router) { }
+  // Inject your User shared service dependency via the constructor signature
+  constructor(private router: Router, private user: User) { }
 
   ngOnInit() {
+    // Read data from the other file automatically when page initializes
+    this.UserProfile = this.user.getUserProfile();
   }
-
   /* Footer Navigation Router Helpers Context Rules Link Handlers */
   LinkToHome() {
     this.router.navigate(['/home-page']);
@@ -45,4 +43,7 @@ export class ProfilePagePage implements OnInit {
     this.router.navigate(['/profile-page']);
   }
 
+  Logout() {
+    this.router.navigate(['/login-page']);
+  }
 }

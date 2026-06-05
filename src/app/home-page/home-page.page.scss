@@ -1,4 +1,7 @@
-/* Overall page setup - Deepened margins on the left and right */
+/* ==========================================================================
+   1. GLOBAL PAGE & LAYOUT FRAMEWORK
+   ========================================================================== */
+
 .mainbackground {
   --background: #f8f9fa; /* Soft light-grey background */
   --padding-top: 16px;
@@ -6,74 +9,117 @@
   --padding-start: 12px; /* Deep left margin */
   --padding-end: 12px;   /* Deep right margin */
 }
-/* User Profile Frame */
+
+/* ==========================================================================
+   UPDATED: BRAND ACCENT MENU FRAME LAYOUT (THEMED TO #ff4724)
+   ========================================================================== */
+
 .MenuFrame {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin: 4px 0px 20px 0px; 
-  padding: 10px 8px;
+  /* Smooth 135-degree brand gradient match for your application theme look */
+  background: linear-gradient(135deg, #ff4724 0%, #fcb069 100%);
+  border-radius: 18px;
+  
+  /* Adds a deep, glowing shadow to lift the card off the page background */
+  box-shadow: 0 8px 24px rgba(179, 38, 12, 0.3);
+  margin: 6px 0px 22px 0px; 
+  padding: 14px 12px;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
 }
 
 .ProfileImage {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%; 
   object-fit: cover;
-  margin-left: 6px;
+  margin-left: 2px;
+  
+  /* Adds a premium white ring framework to frame the user avatar image */
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Moving status indicator dot to contrast cleanly against the red base */
+.active-status-dot {
+  position: absolute;
+  bottom: 1px;
+  right: -1px;
+  width: 11px;
+  height: 11px;
+  background-color: #2dd36f; /* Ionic success green */
+  border: 2px solid #ff4724; /* Seamless blend border matching theme card color */
+  border-radius: 50%;
 }
 
 .MenuTextSession {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-left: 6px;
+  padding-left: 10px;
 }
 
+/* Light white muted intro text layer */
+.WelcomeMsg2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75); 
+  margin-bottom: 2px;
+}
+
+/* Stark crisp white bold title layout name header */
 .WelcomeMsg {
   font-weight: 800;
-  font-size: 18px;
-  color: #2b2b2b;
+  font-size: 21px;
+  color: #ffffff; 
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.WelcomeMsg2 {
-  font-size: 12px;
-  color: #8e8e93;
-  margin-top: 2px;
-}
-
-.MenuIcon {
-  --color: #ff4724;
-  font-size: 20px;
-}
-
-/* Banner Design */
-.HorizontalBanner {
-  height: 140px;
-  background: linear-gradient(135deg, #ff4724 0%, #ff8266 100%);
-  border-radius: 16px;
-  margin: 0 0 24px 0; 
+/* The location marker pill tailored for a dark background card style */
+.DeliveryLocationBadge {
   display: flex;
   align-items: center;
-  padding: 20px;
-  color: white;
-  box-shadow: 0 8px 16px rgba(255, 71, 36, 0.2);
+  gap: 4px;
+  margin-top: 5px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  
+  ion-icon {
+    color: #ffffff; /* Shifted to white icon pointer line */
+    font-size: 13px;
+  }
+
+  b {
+    color: #ffffff;
+    font-weight: 700;
+  }
 }
 
-.BannerContent h2 {
-  font-size: 28px;
-  font-weight: 800;
+/* Clean transparent action gear buttons formatted to sit on red background canvas */
+.MenuIconButton {
   margin: 0;
-  letter-spacing: 1px;
+  --padding-start: 0;
+  --padding-end: 0;
+  
+  ion-icon {
+    font-size: 22px;
+    color: #ffffff; /* Bright white settings gear outline wheel */
+  }
 }
 
-.BannerContent p {
-  font-size: 14px;
-  margin: 4px 0 0 0;
-  opacity: 0.9;
+.gear-spin {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  &:active {
+    transform: rotate(90deg);
+  }
 }
 
-/* Sections Headers */
+/* Section Divider Headers */
 .DividerArea {
   display: flex;
   justify-content: space-between;
@@ -91,19 +137,187 @@
   color: #ff4724;
   font-size: 13px;
   font-weight: 600;
+  cursor: pointer;
 }
 
-/* Categories Horizontal List */
+
+/* ==========================================================================
+   2. HIGH-PERFORMANCE DYNAMIC AUTO-SLIDER BANNER SYSTEM
+   ========================================================================== */
+
+.SliderContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.HorizontalBannerTrack {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  
+  /* Hides native device browser scrollbars completely */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.BannerSlideCard {
+  min-width: 100%;
+  width: 100%;
+  height: 200px; /* Fixed height accommodating floating graphics safely */
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Splitting columns across viewport space */
+  padding: 16px 20px;
+  color: white;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Left Column: Promotion Text Elements */
+.BannerLeftColumn {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2; /* Forces text to sit securely over graphic overlaps */
+  padding-right: 8px;
+
+  .PromoBadge {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 4px 0 0 0;
+    opacity: 0.95;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 95%;
+  }
+}
+
+/* Minimalist Inline Call-To-Action Link Button */
+.OrderNowLink {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background-color: #ffffff;
+  color: #222222;
+  padding: 5px 12px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  
+  ion-icon {
+    font-size: 14px;
+    color: #ff4724;
+  }
+}
+
+/* Right Column: Beautiful Circular Product Graphic Layout */
+.BannerRightColumn {
+  flex: 0.8;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 4px;
+}
+
+.PromoFloatingImage {
+  /* Strict bounding sizes ensure images don't stretch across the card */
+  width: 105px !important;
+  height: 105px !important;
+  min-width: 105px;
+  min-height: 105px;
+  
+  /* Forces flawless circular aspect bounding box ratios */
+  border-radius: 50% !important; 
+  object-fit: cover !important; 
+  
+  /* The glowing white circular profile frame border ring */
+  border: 4px solid rgba(255, 255, 255, 0.9) !important; 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  
+  /* Micro dynamic styling tilts */
+  transform: rotate(-4deg); 
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Zoom effect on interactive card press */
+.BannerSlideCard:active .PromoFloatingImage {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Progress Pagination Dots Layout Tracking */
+.SliderIndicatorDotsRow {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+
+  .IndicatorDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #d1d1d6;
+    transition: all 0.2s ease-in-out;
+
+    &.active {
+      width: 18px; /* Dynamic tracking indicator expand stretch pill */
+      border-radius: 4px;
+      background-color: #ff4724;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   3. HORIZONTAL CATEGORIES SCROLL LIST (GRADIENT UPDATE)
+   ========================================================================== */
+
 .horizontal-list {
   display: flex;
   overflow-x: auto;
   gap: 12px;
   padding: 4px 2px 24px 2px; 
   scroll-snap-type: x mandatory;
-}
-
-.horizontal-list::-webkit-scrollbar {
-  display: none; 
+  
+  &::-webkit-scrollbar {
+    display: none; 
+  }
 }
 
 .card {
@@ -119,8 +333,20 @@
   flex-shrink: 0;
   scroll-snap-align: start;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #f0f0f0;
+  cursor: pointer;
+
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .category-icon {
@@ -128,32 +354,31 @@
   color: #ff4724;
 }
 
-.card h3 {
-  font-size: 13px;
-  font-weight: 600;
-  color: #444;
-  margin: 0;
-}
-
-.card:active {
-  transform: scale(0.95);
-}
-
+/* ==========================================
+   NEW: Vibrant Selected Gradient State 
+   ========================================== */
 .card.selected {
-  background: #ff4724;
-  color: white;
-  border-color: #ff4724;
-  box-shadow: 0 6px 14px rgba(255, 71, 36, 0.3);
+  /* Blends your brand red-orange smoothly into a vibrant coral pink tone */
+  background: linear-gradient(135deg, #ff4724 0%, #fa8d77 100%);
+  
+  /* Removes the border line to keep the gradient edge clean */
+  border-color: transparent; 
+  
+  /* Deepens the shadow glow behind the selected card to match the main banner */
+  box-shadow: 0 6px 16px rgba(255, 71, 36, 0.35);
+
+  /* Keeps the typography and icon perfectly white over the new bright gradient background */
+  h3, .category-icon {
+    color: white !important;
+  }
 }
 
-.card.selected h3, 
-.card.selected .category-icon {
-  color: white;
-}
+/* ==========================================================================
+   4. PRODUCT GRID PLATFORM & VIEW MORE BUTTON
+   ========================================================================== */
 
-/* Products Layout Framework */
 .ProductRow {
-  margin: 0 -6px; /* Counter-acts item padding to keep grid locked to the page margins */
+  margin: 0 -6px; /* Counter-acts padding boundaries evenly */
 }
 
 .RmvPadding {
@@ -224,11 +449,11 @@
   font-size: 16px;
 }
 
-/* 12-Size Full Width View More Button Properties (Colors Reversed) */
+/* Full Width View More Button Structure Rules */
 .ViewMoreBtn {
   margin: 12px 0 24px 0;
-  --background: #ff4724; /* Background is now the primary branding color */
-  --color: #ffffff;      /* Words and text are now crisp white */
+  --background: #ff4724; 
+  --color: #ffffff;      
   font-weight: 700;
   font-size: 15px;
   height: 48px;
@@ -241,7 +466,11 @@
   }
 }
 
-/* Custom Persistent Footer Rules */
+
+/* ==========================================================================
+   5. PERSISTENT GLOBAL TAB FOOTER STYLING
+   ========================================================================== */
+
 .persistent-footer {
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
   border-top: 1px solid #e0e0e0;
@@ -271,6 +500,7 @@
       transition: font-size 0.15s ease-in-out;
     }
 
+    /* Vertical Grid Dividers on Tab Bars */
     &::after {
       content: '';
       position: absolute;
@@ -287,7 +517,7 @@
   }
 }
 
-/* Forces the active state icon style to cleanly match across views */
+/* Active tab visual scaling override anchor */
 .active-tab-override {
   font-size: 23px !important;
 }

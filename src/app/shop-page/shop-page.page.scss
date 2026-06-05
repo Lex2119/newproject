@@ -189,3 +189,113 @@
 .active-tab-override {
   font-size: 23px !important;
 }
+
+/* Add these styles within your payment-page.page.scss file */
+
+.header-action-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Make search bar consume the flex spaces smoothly */
+.custom-searchbar {
+  flex: 1;
+}
+
+/* Premium Minimalist Circle Sorting Button Context */
+.sort-trigger-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f1f3f4; // Matches searchbar color tint
+  color: #ff4724; // Matches global brand orange accent highlights
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  font-size: 20px;
+  transition: all 0.15s ease-in-out;
+  padding: 0;
+
+  &:active {
+    background-color: #e2e5e7;
+    transform: scale(0.95);
+  }
+}
+
+/* Beautiful Dropdown Popover List Style Tweaks */
+.custom-sort-popover {
+  --width: 220px;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  .sort-list {
+    padding: 4px 0;
+    background: #ffffff;
+
+    ion-item {
+      --background: #ffffff;
+      --color: #333333;
+      --font-size: 14px;
+      --padding-start: 14px;
+      font-weight: 500;
+      
+      ion-icon {
+        color: #666666;
+        font-size: 18px;
+        margin-right: 12px;
+      }
+
+      &:hover {
+        --background: #f8f9fa;
+      }
+    }
+  }
+}
+
+.category-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 12px;
+  background: white;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 14px;
+
+  background: #f1f3f4;
+  border-radius: 999px;
+
+  white-space: nowrap;
+
+  color: #666;
+
+  ion-icon {
+    font-size: 18px;
+  }
+}
+
+.category-chip.selected {
+  background: #ff4724;
+  color: white;
+}
+
+.category-toolbar {
+  --background: white;
+  --min-height: auto;
+  padding: 0;
+}

@@ -1,139 +1,110 @@
-<!-- payment-page.page.html -->
-
 <ion-content [fullscreen]="true" class="paymentBackground">
 
   <div class="paymentContainer">
 
-    <!-- Header -->
     <div class="topSection">
-
-      <h1 class="paymentTitle">
-        Checkout
-      </h1>
-
-
+      <h1 class="paymentTitle">Payment</h1>
+      <p class="secureSubtitle">
+        <ion-icon name="lock-closed-outline"></ion-icon> Secure SSL Encrypted Checkout
+      </p>
     </div>
 
-    <!-- Card Design -->
-    <div class="fakeCard">
-
-      <div class="cardTop">
-
-        <div class="chip"></div>
-
-        <div class="visaText">
-          VISA
-        </div>
-
-      </div>
-
-      <div class="cardNumberDisplay">
-        {{ cardNumber || '**** **** **** ****' }}
-      </div>
-
-      <div class="cardBottom">
-
-        <div>
-
-          <p class="smallTitle">Card Holder</p>
-
-          <p class="cardText">
-            {{ cardName || 'YOUR NAME' }}
-          </p>
-
-        </div>
-
-        <div>
-
-          <p class="smallTitle">Expires</p>
-
-          <p class="cardText">
-            {{ expiry || 'MM/YY' }}
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Payment Form -->
-    <div class="cardBox">
-
-      <input
-        type="text"
-        placeholder="Card Number"
-        class="paymentInput"
-        maxlength="19"
-        [(ngModel)]="cardNumber"
-      >
-
-      <input
-        type="text"
-        placeholder="Card Holder Name"
-        class="paymentInput"
-        [(ngModel)]="cardName"
-      >
-
-      <div class="rowInput">
-
-        <input
-          type="text"
-          placeholder="MM/YY"
-          class="smallInput"
-          maxlength="5"
-          [(ngModel)]="expiry"
-        >
-
-        <input
-          type="password"
-          placeholder="CVV"
-          class="smallInput"
-          maxlength="3"
-          [(ngModel)]="cvv"
-        >
-
-      </div>
-
-    </div>
-
-    <!-- Order Summary -->
-    <div class="summaryBox">
-
+    <div class="summaryCard">
       <div class="summaryRow">
-        <span>Items</span>
-        <span>{{CartList.length}}</span>
-      </div>
-
-      <div class="summaryRow">
-        <span>Total</span>
-        <span class="totalPrice">
-          RM {{GetTotalPrice()}}
+        <span class="label">Order Summary</span>
+        <span class="value">
+          {{ CartList?.length || 0 }} {{ CartList?.length === 1 ? 'item' : 'items' }}
         </span>
       </div>
+      <div class="summaryRow totalRow">
+        <span class="label">Total Amount</span>
+        <span class="totalPrice">RM {{ GetTotalPrice() | number:'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="paymentFormContainer">
+      <h2 class="sectionTitle">Card Information</h2>
+      
+      <div class="inputWrapper">
+        <label class="inputLabel">Cardholder Name</label>
+        <input
+          type="text"
+          placeholder="Lim"
+          class="stripeInput"
+          [(ngModel)]="cardName"
+        >
+      </div>
+
+      <div class="inputWrapper">
+        <label class="inputLabel">Card Number</label>
+        <div class="innerInputIcon">
+          <input
+            type="text"
+            placeholder="4242 4242 4242 4242"
+            class="stripeInput withIcon"
+            maxlength="19"
+            [(ngModel)]="cardNumber"
+          >
+          <ion-icon name="card-outline" class="cardIcon"></ion-icon>
+        </div>
+      </div>
+
+      <div class="rowInput">
+        <div class="inputWrapper flex-1">
+          <label class="inputLabel">Expiration Date</label>
+          <input
+            type="text"
+            placeholder="MM / YY"
+            class="stripeInput"
+            maxlength="5"
+            [(ngModel)]="expiry"
+          >
+        </div>
+
+        <div class="inputWrapper flex-1">
+          <label class="inputLabel">CVC</label>
+          <input
+            type="password"
+            placeholder="123"
+            class="stripeInput"
+            maxlength="4"
+            [(ngModel)]="cvv"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="actionButtonGroup">
+      
+      <button 
+        class="stripePayButton" 
+        [disabled]="isLoading || !CartList || CartList.length === 0 || !cardName.trim() || !cardNumber.trim() || !expiry.trim() || !cvv.trim()" 
+        (click)="PayNow()"
+      >
+        <span *ngIf="!isLoading">
+          Pay RM {{ GetTotalPrice() | number:'1.2-2' }}
+        </span>
+        <div *ngIf="isLoading" class="spinnerWrapper">
+          <ion-spinner name="crescent"></ion-spinner>
+          <span>Processing...</span>
+        </div>
+      </button>
+
+      <button 
+        class="stripeCancelButton" 
+        [disabled]="isLoading"
+        (click)="CancelPayment()"
+      >
+        Cancel Order
+      </button>
 
     </div>
 
-    <!-- Pay Button -->
-    <div
-      class="payButton"
-      (click)="PayNow()"
-    >
-
-      <div *ngIf="!isLoading">
-        Pay RM {{GetTotalPrice()}}
-      </div>
-
-      <div *ngIf="isLoading">
-        Processing Payment...
-      </div>
-
+    <div class="stripeFooter">
+      <p class="stripeText">
+        <ion-icon name="shield-checkmark-outline"></ion-icon> Powered by Stripe
+      </p>
     </div>
-
-    <!-- Stripe Text -->
-    <p class="stripeText">
-      Powered by Stripe
-    </p>
 
   </div>
 

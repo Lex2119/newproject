@@ -1,3 +1,132 @@
+/* Container Wrapper Padding Adjustments */
+.HistoryContainer {
+  padding: 0 0 20px 0;
+  background-color: #ffffff;
+  min-height: 100%;
+}
+
+/* Header Section Style rules to eliminate empty white space */
+.history-header {
+  background: linear-gradient(180deg, #fcfcfc 0%, #f7f7f7 100%);
+  padding: 24px 20px 20px 20px;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 12px;
+
+  .page-main-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #222222;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.3px;
+  }
+}
+
+/* Dashboard Minimalist Statistics Card */
+.stats-summary-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+
+  .stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ff4724; /* Brand Primary Theme Accent */
+
+      &.StatusGreen {
+        color: #4caf50;
+      }
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      color: #888888;
+      text-transform: uppercase;
+      margin-top: 2px;
+      letter-spacing: 0.2px;
+    }
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 30px;
+    background-color: #eef0f2;
+  }
+}
+
+/* Elegant Centered Empty State Rules */
+.empty-history-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 32px;
+  
+  .empty-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #fff0ec;
+    color: #ff4724;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(255, 71, 36, 0.1);
+
+    ion-icon {
+      font-size: 38px;
+    }
+  }
+
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #222222;
+    margin: 0 0 8px 0;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #7f8c8d;
+    margin: 0 0 24px 0;
+    max-width: 260px;
+  }
+
+  .shop-now-btn {
+    background: linear-gradient(90deg, #ff5722 0%, #ff4724 100%);
+    color: #ffffff;
+    padding: 12px 36px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(255, 71, 36, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+}
+
+.orders-scroll-group {
+  overflow-y: auto;
+}
+
 // Spacing and divider between each order row
 .CartItemRow {
   padding: 12px;
@@ -13,7 +142,7 @@
   justify-content: center;
   align-items: center;
   padding: 12px;
-  border-radius: 12px; // Rounds the corners of the colored background
+  border-radius: 12px; 
   height: 90px;
   width: 100%;
 }
@@ -23,19 +152,19 @@
   background-color: #ffffff;
   width: 65px;
   height: 65px;
-  border-radius: 50%; // Makes it a perfect circle
+  border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; // Ensures the image doesn't bleed out of the circle
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Subtle shadow for depth
+  overflow: hidden; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
 }
 
 // The actual product image scaling
 .CartImg {
   width: 75%;
   height: 75%;
-  object-fit: contain; // Keeps the image proportioned without stretching
+  object-fit: contain; 
 }
 
 // Right column wrapper for text alignment
@@ -65,6 +194,11 @@
     font-weight: 300;
     margin: 0;
     color: #999999;
+    
+    ion-icon {
+      vertical-align: middle;
+      margin-right: 2px;
+    }
   }
 }
 
@@ -75,40 +209,38 @@
 }
 
 .footer-toolbar {
-  --background: #eeeeee; /* Light Gray background container */
+  --background: #eeeeee; 
   --min-height: 56px;
   padding: 0;
 }
 
 .custom-tab-bar {
-  --background: #eeeeee; /* Gray color scheme background */
+  --background: #eeeeee; 
   border-top: none;
   height: 56px;
 
   ion-tab-button {
-    --color: #ff4724; /* Base icon and text color updated to your exact Orangered brand color */
+    --color: #ff4724; 
     --color-selected: #ff4724; 
-    font-size: 10px; /* Optimized layout size for 5 columns */
+    font-size: 10px; 
     font-weight: 600;
     position: relative;
 
     ion-icon {
-      font-size: 20px; /* Optimized layout size for 5 columns */
+      font-size: 20px; 
       margin-bottom: 2px;
     }
 
-    /* Subtle vertical line in between buttons */
     &::after {
       content: '';
       position: absolute;
       right: 0;
       top: 25%;
-      height: 50%; /* Center aligned and takes up half the button height */
+      height: 50%; 
       width: 1px;
-      background-color: #d1d1d1; /* Soft gray line to contrast nicely against #eeeeee background */
+      background-color: #d1d1d1; 
     }
 
-    /* Prevents trailing line on the final button */
     &:last-child::after {
       display: none;
     }
@@ -117,4 +249,21 @@
 
 .active-tab-override {
   font-size: 23px !important;
+}
+
+/* Add this inside payment-page.page.scss */
+.emptyCartWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  
+  p {
+    margin: 0;
+  }
 }

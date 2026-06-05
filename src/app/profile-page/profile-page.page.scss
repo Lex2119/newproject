@@ -6,7 +6,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: #f8f9fa; /* Sleek light background canvas for contrast */
+    background-color: #f8f9fa; 
     border-radius: 0px 0px 0px 60px;
     z-index: 10;
     transform: translateY(-100%);
@@ -14,7 +14,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding-bottom: 56px; /* Avoid overlapping the persistent footer window */
+    padding-bottom: 56px; 
 }
 
 .custom-header {
@@ -65,7 +65,6 @@
     padding: 0 0 24px 0;
 }
 
-/* Premium Profile Hero Card Container */
 .profile-hero-card {
     background: linear-gradient(135deg, rgb(255, 87, 34) 0%, rgb(236, 52, 20) 100%);
     padding: 32px 24px;
@@ -106,7 +105,6 @@
     }
 }
 
-/* Settings List Menu Item Options */
 .settings-menu-group {
     background-color: #ffffff;
     margin: 0 16px;
@@ -144,11 +142,13 @@
             font-size: 20px;
         }
 
-        /* Context Color Accents for Food Items Architecture Styling */
         &.orders-accent { background-color: #fff0ec; color: #ff5722; }
         &.cart-accent { background-color: #e8f5e9; color: #4caf50; }
         &.location-accent { background-color: #e3f2fd; color: #2196f3; }
         &.phone-accent { background-color: #fffde7; color: #fbc02d; }
+        
+        /* NEWLY ADDED: Red themed accent box for standard system logout button */
+        &.logout-accent { background-color: #ffebee; color: #f44336; }
     }
 
     .menu-label-block {
@@ -161,6 +161,9 @@
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 2px;
+            
+            /* NEWLY ADDED: Urgent context indicator label color rule */
+            &.logout-text-color { color: #e53935; }
         }
 
         .menu-subtitle {
@@ -175,7 +178,6 @@
         font-size: 18px;
     }
 }
-
 
 @keyframes slideInTop {
     from {
@@ -210,7 +212,6 @@
     height: 56px;
 
     ion-tab-button {
-        /* Forces ALL tab elements to use your brand color at all times */
         --color: #ff4724 !important; 
         --color-selected: #ff4724 !important; 
         color: #ff4724 !important;
@@ -221,7 +222,7 @@
         ion-icon {
             font-size: 20px; 
             margin-bottom: 2px;
-            color: #ff4724 !important; /* Forces the graphic stroke/fill layer color */
+            color: #ff4724 !important;
         }
 
         &::after {
@@ -240,7 +241,6 @@
     }
 }
 
-/* Make the filled active icon pop out slightly more */
 .active-tab-override {
     font-size: 23px !important;
 }

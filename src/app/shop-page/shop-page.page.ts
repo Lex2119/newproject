@@ -13,26 +13,133 @@ export class ShopPagePage implements OnInit {
   masterProductList: any[] = [];
   filteredProductList: any[] = [];
 
+
+    currentSort = ''; 
+    lastSearchTerm = '';
+
+    categoriesList = [
+    {
+      name: 'All',
+      icon: 'apps-outline'
+    },
+    {
+      name: 'Noodles',
+      icon: 'restaurant-outline'
+    },
+    {
+      name: 'Western',
+      icon: 'fast-food-outline'
+    },
+    {
+      name: 'Vegetarian',
+      icon: 'leaf-outline'
+    },
+    {
+      name: 'Japanese',
+      icon: 'fish-outline'
+    },
+    {
+      name: 'Asian',
+      icon: 'restaurant-outline'
+    },
+    {
+      name: 'Local',
+      icon: 'home-outline'
+    },
+    {
+      name: 'Dessert',
+      icon: 'ice-cream-outline'
+    },
+    {
+      name: 'Mexican',
+      icon: 'pizza-outline'
+    },
+    {
+      name: 'Thai',
+      icon: 'flame-outline'
+    },
+    {
+      name: 'Chinese',
+      icon: 'cafe-outline'
+    }
+  ];
+
+  selectedCategory = 'All';
+
+  selectCategory(category: any){
+
+    this.selectedCategory = category.name;
+
+    this.executeFilterAndSort();
+
+  }
+
   constructor(private router: Router, private product: Product) { }
 
   ngOnInit() {
-    // Populate raw layout context array matrix directly from database service
     this.masterProductList = this.product.getProduct() || [];
     this.filteredProductList = [...this.masterProductList];
   }
 
-  // Live query evaluation matching array criteria pipeline loop
   onSearchChange(event: any) {
-    const searchTerm = event.target.value ? event.target.value.toLowerCase().trim() : '';
+    this.lastSearchTerm = event.target.value ? event.target.value.toLowerCase().trim() : '';
+    this.executeFilterAndSort();
+  }
 
-    if (!searchTerm) {
-      this.filteredProductList = [...this.masterProductList];
-      return;
+  // New Sorting Strategy Router Function
+  applySort(sortType: string) {
+    this.currentSort = sortType;
+    this.executeFilterAndSort();
+  }
+
+  executeFilterAndSort() {
+
+    let result = [...this.masterProductList];
+
+    // Category Filter
+    if(this.selectedCategory !== 'All'){
+
+      result = result.filter(
+        item => item.Category === this.selectedCategory
+      );
+
     }
 
-    this.filteredProductList = this.masterProductList.filter(item => {
-      return item.name && item.name.toLowerCase().includes(searchTerm);
-    });
+    // Search Filter
+    if(this.lastSearchTerm){
+
+      result = result.filter(item =>
+        item.name &&
+        item.name.toLowerCase().includes(this.lastSearchTerm)
+      );
+
+    }
+
+    // Sorting
+    if (this.currentSort === 'alpha') {
+
+      result.sort(
+        (a, b) => (a.name || '').localeCompare(b.name || '')
+      );
+
+    }
+    else if (this.currentSort === 'priceLow') {
+
+      result.sort(
+        (a, b) => (a.price || 0) - (b.price || 0)
+      );
+
+    }
+    else if (this.currentSort === 'priceHigh') {
+
+      result.sort(
+        (a, b) => (b.price || 0) - (a.price || 0)
+      );
+
+    }
+
+    this.filteredProductList = result;
+
   }
 
   ProductClick(productid: number) {
@@ -43,24 +150,9 @@ export class ShopPagePage implements OnInit {
     alert("ID= " + id);
   }
 
-  /* Navigation Routing Engine Context Hooks */
-  LinkToHome() {
-    this.router.navigate(['/home-page']);
-  }
-
-  LinkToShop() {
-    this.router.navigate(['/shop-page']);
-  }
-
-  LinkToCart() {
-    this.router.navigate(['/cart-page']);
-  }
-
-  LinkToProfile() {
-    this.router.navigate(['/profile-page']);
-  }
-
-  LinkToOrderHistory() {
-    this.router.navigate(['/order-history-page']); // Brand new method mapping to order history layout
-  }
+  LinkToHome() { this.router.navigate(['/home-page']); }
+  LinkToShop() { this.router.navigate(['/shop-page']); }
+  LinkToCart() { this.router.navigate(['/cart-page']); }
+  LinkToProfile() { this.router.navigate(['/profile-page']); }
+  LinkToOrderHistory() { this.router.navigate(['/order-history-page']); }
 }

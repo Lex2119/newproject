@@ -1,50 +1,91 @@
 <ion-content [fullscreen]="true" class="mainbackground">
 
-  <ion-card class="MenuFrame">
+  <div class="MenuFrame">
     <ion-grid class="ion-no-padding">
       <ion-row class="ion-align-items-center">
-        <ion-col size="3">
-          <img class="ProfileImage" src="https://placehold.co/200x200" alt="Profile">
-        </ion-col>     
-        <ion-col size="7">
-          <div class="MenuTextSession">
-            <ion-label class="WelcomeMsg">Hello, Guest!</ion-label>
-            <ion-label class="WelcomeMsg2">Hungry for something delicious?</ion-label>
+        
+        <ion-col size="2" class="avatar-container">
+          <img [src]="UserProfile?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'" 
+               class="ProfileImage" 
+               alt="User Profile Picture">
+          <span class="active-status-dot"></span>
+        </ion-col>
+        
+        <ion-col size="8" class="MenuTextSession">
+          <span class="WelcomeMsg2">{{ greetingMessage }}</span>
+          <h1 class="WelcomeMsg">{{ UserProfile?.name || 'Guest User' }}</h1>
+          
+          <div class="DeliveryLocationBadge">
+            <ion-icon name="location-sharp"></ion-icon>
+            <span>Delivering to <b>Home</b></span>
           </div>
         </ion-col>
+        
         <ion-col size="2" class="ion-text-center">
-          <ion-button class="MenuIcon" color="dark" fill="clear" (click)="LinkToProfile()">
-            <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+          <ion-button class="MenuIconButton" fill="clear" (click)="LinkToProfile()">
+            <ion-icon name="settings-outline" class="gear-spin"></ion-icon>
           </ion-button>
         </ion-col>
+
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </div>
 
-  <div class="HorizontalBanner">
-    <div class="BannerContent">
+<div class="SliderContainer" *ngIf="bannerPromos && bannerPromos.length > 0">
+  
+  <div class="HorizontalBannerTrack" #bannerTrack (touchstart)="stopAutoSlide()" (touchend)="startAutoSlide()">
+    <div class="BannerSlideCard" 
+         *ngFor="let promo of bannerPromos; let i = index"
+         [style.background]="promo.bgGradient"
+         (click)="OnBannerClick(promo.productId)">
+      
+      <div class="BannerLeftColumn">
+        <span class="PromoBadge">{{ promo.badge }}</span>
+        <h2>{{ promo.title }}</h2>
+        <p>{{ promo.subtitle }}</p>
+        <div class="OrderNowLink">
+          <span>Order Now</span>
+          <ion-icon name="chevron-forward-circle"></ion-icon>
+        </div>
+      </div>
+
+      <div class="BannerRightColumn">
+        <img [src]="promo.productImage" class="PromoFloatingImage" alt="Dynamic Dish">
+      </div>
       
     </div>
   </div>
 
+  <div class="SliderIndicatorDotsRow">
+    <span class="IndicatorDot" 
+          *ngFor="let dot of bannerPromos; let idx = index"
+          [class.active]="idx === activeBannerIndex">
+    </span>
+  </div>
+</div>
+
   <div class="DividerArea">
     <ion-label class="TitleText">Categories</ion-label>
-    <ion-label class="SeeAllText">See All</ion-label>
+    <ion-label class="SeeAllText" (click)="LinkToShop()">See All</ion-label>
   </div>
 
   <div class="horizontal-list">
     <div class="card" 
-         *ngFor="let item of categoriesList"
-         [class.selected]="selectedItem == item" 
-         (click)="selecteditem(item)">
-      <ion-icon name="fast-food-outline" class="category-icon"></ion-icon>
+        *ngFor="let item of categoriesList"
+        [class.selected]="selectedItem == item" 
+        (click)="selecteditem(item)">
+      <ion-icon [name]="item.icon" class="category-icon"></ion-icon>
       <h3>{{item.name}}</h3>
     </div>
   </div>
 
   <div class="DividerArea">
-    <ion-label class="TitleText">Popular Foods</ion-label>
-    <ion-label class="SeeAllText">See All</ion-label>
+    <ion-label class="TitleText">
+      {{ selectedItem?.name === 'All' ? 'All Foods' : selectedItem?.name + ' Dishes' }}
+    </ion-label>
+    <ion-label class="SeeAllText" *ngIf="selectedItem?.name !== 'All'" (click)="selecteditem(categoriesList[0])">
+      Clear Filter
+    </ion-label>
   </div>
 
   <ion-grid class="ion-no-padding">
@@ -60,7 +101,6 @@
               <ion-label class="PriceText">${{ pair.price }}</ion-label>
             </div>
           </ion-card>
-            
           <ion-button class="AddtoCartBtn" color="warning" (click)="addtocart(pair.id)">
             <ion-icon slot="icon-only" name="add"></ion-icon>
           </ion-button>
@@ -88,22 +128,18 @@
           <ion-icon name="home" class="active-tab-override"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-tab-button>
-
         <ion-tab-button (click)="LinkToShop()">
           <ion-icon name="storefront-outline"></ion-icon>
           <ion-label>Shop</ion-label>
         </ion-tab-button>
-
         <ion-tab-button (click)="LinkToOrderHistory()">
           <ion-icon name="receipt-outline"></ion-icon>
           <ion-label>Orders</ion-label>
         </ion-tab-button>
-
         <ion-tab-button (click)="LinkToCart()">
           <ion-icon name="cart-outline"></ion-icon>
           <ion-label>Cart</ion-label>
         </ion-tab-button>
-
         <ion-tab-button (click)="LinkToProfile()">
           <ion-icon name="person-outline"></ion-icon>
           <ion-label>Profile</ion-label>

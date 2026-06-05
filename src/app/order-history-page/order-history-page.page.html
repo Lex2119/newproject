@@ -1,33 +1,60 @@
 <ion-content [fullscreen]="true">
   <div class="HistoryContainer">
     
-    <ion-row class="CartItemRow" *ngFor="let item of OrderHistory">
+    <div class="history-header">
+      <h1 class="page-main-title">Order History</h1>
+      
+      <div class="stats-summary-card" *ngIf="OrderHistory && OrderHistory.length > 0">
+        <div class="stat-box">
+          <span class="stat-num">{{ OrderHistory.length }}</span>
+          <span class="stat-lbl">Total Meals</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
 
-      <ion-col size="4" class="LeftCol">
-        <div class="ProductContainer" [style.background-color]="item.backgroundColor">
-          <div class="CartImageCircle">
-            <img class="CartImg" [src]="item.image" alt="Product Image">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-history-wrapper" *ngIf="!OrderHistory || OrderHistory.length === 0">
+      <div class="empty-icon-circle">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </div>
+      <h2>No Orders Yet</h2>
+      <p>Your culinary timeline is looking empty. Head over to the shop to find your next delicious meal!</p>
+      <div class="shop-now-btn" (click)="LinkToShop()">Explore Menu</div>
+    </div>
+
+    <div class="orders-scroll-group" *ngIf="OrderHistory && OrderHistory.length > 0">
+      <ion-row class="CartItemRow" *ngFor="let item of OrderHistory">
+
+        <ion-col size="4" class="LeftCol">
+          <div class="ProductContainer" [style.background-color]="item.backgroundColor">
+            <div class="CartImageCircle">
+              <img class="CartImg" [src]="item.image" alt="Product Image">
+            </div>
           </div>
-        </div>
-      </ion-col>
+        </ion-col>
 
-      <ion-col size="8" class="RightCol">
-        <div class="details-wrapper">
-          <h1 class="productName">
-            {{ item.productName }}
-          </h1>
-          
-          <h2 class="productPrice">
-            Quantity: <strong>{{ item.quantity }}</strong>
-          </h2>
-          
-          <h3 class="paymentTime">
-            <ion-icon name="time-outline"></ion-icon> {{ item.paymentTime }}
-          </h3>
-        </div>
-      </ion-col>
+        <ion-col size="8" class="RightCol">
+          <div class="details-wrapper">
+            <h1 class="productName">
+              {{ item.productName }}
+            </h1>
+            
+            <h2 class="productPrice">
+              Quantity: <strong>{{ item.quantity }}</strong>
+            </h2>
+            
+            <h3 class="paymentTime">
+              <ion-icon name="time-outline"></ion-icon> {{ item.paymentTime }}
+            </h3>
+          </div>
+        </ion-col>
 
-    </ion-row>
+      </ion-row>
+    </div>
 
   </div>
 </ion-content>

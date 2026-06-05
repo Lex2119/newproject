@@ -27,7 +27,7 @@
           </div>
           <div class="menu-label-block">
             <span class="menu-main-title">Order History</span>
-            <span class="menu-subtitle">View past transactions and receipts</span>
+            <span class="menu-subtitle">View past orders and receipts</span>
           </div>
           <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
         </div>
@@ -61,6 +61,16 @@
           <div class="menu-label-block">
             <span class="menu-main-title">Contact Number</span>
             <span class="menu-subtitle">{{ UserProfile.phone }}</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item-row" (click)="Logout()">
+          <div class="left-icon-box logout-accent">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </div>
+          <div class="menu-label-block">
+            <span class="menu-main-title logout-text-color">Logout</span>
           </div>
           <ion-icon name="chevron-forward-outline" class="row-chevron"></ion-icon>
         </div>

@@ -1,20 +1,86 @@
 <ion-header [translucent]="true" class="shop-header">
   <ion-toolbar class="search-toolbar">
-    <ion-searchbar 
-      placeholder="Search ..." 
-      class="custom-searchbar"
-      animated="true"
-      (ionInput)="onSearchChange($event)">
-    </ion-searchbar>
+    <div class="header-action-row">
+      <ion-searchbar 
+        placeholder="Search ..." 
+        class="custom-searchbar"
+        animated="true"
+        (ionInput)="onSearchChange($event)">
+      </ion-searchbar>
+
+      <button class="sort-trigger-btn" id="sort-popover-trigger">
+        <ion-icon name="swap-vertical-outline"></ion-icon>
+      </button>
+    </div>
   </ion-toolbar>
+
+<ion-toolbar class="category-toolbar">
+
+  <div class="category-list">
+
+    <div
+      class="category-chip"
+      *ngFor="let item of categoriesList"
+      [class.selected]="selectedCategory === item.name"
+      (click)="selectCategory(item)">
+
+      <ion-icon [name]="item.icon"></ion-icon>
+
+      <span>{{item.name}}</span>
+
+    </div>
+
+  </div>
+
+</ion-toolbar>
+
+  <ion-popover trigger="sort-popover-trigger" dismissOnSelect="true" class="custom-sort-popover">
+    <ng-template>
+      <ion-content>
+        <ion-list lines="none" class="sort-list">
+          <ion-item button (click)="applySort('alpha')">
+            <ion-icon name="text-outline" slot="start"></ion-icon>
+            <ion-label>Alphabetical (A-Z)</ion-label>
+          </ion-item>
+          <ion-item button (click)="applySort('priceLow')">
+            <ion-icon name="trending-up-outline" slot="start"></ion-icon>
+            <ion-label>Price: Low to High</ion-label>
+          </ion-item>
+          <ion-item button (click)="applySort('priceHigh')">
+            <ion-icon name="trending-down-outline" slot="start"></ion-icon>
+            <ion-label>Price: High to Low</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 </ion-header>
+
+
 
 <ion-content [fullscreen]="true" class="mainbackground">
 
-  <div class="DividerArea">
-    <ion-label class="TitleText">All Products</ion-label>
-    <ion-label class="ResultsCount">{{ filteredProductList.length }} Items</ion-label>
-  </div>
+<div class="DividerArea">
+
+  <ion-label class="TitleText">
+
+    {{
+      lastSearchTerm
+      ? 'Search Results'
+      : selectedCategory === 'All'
+        ? 'Browse Menu'
+        : selectedCategory + ' Menu'
+    }}
+
+  </ion-label>
+
+  <ion-label class="ResultsCount">
+
+    {{ filteredProductList.length }} Items
+
+  </ion-label>
+
+</div>
 
   <ion-grid class="ion-no-padding">
     <ion-row class="ProductRow">

@@ -1,234 +1,247 @@
-/* payment-page.page.scss */
-
-.paymentBackground{
-    --ion-background-color: #f5f5f7;
+.paymentBackground {
+  // A clean off-white background with a hint of professional slate tint
+  --ion-background-color: #f4f6f8; 
 }
 
-.paymentContainer{
-    padding: 25px;
+.paymentContainer {
+  padding: 24px;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.topSection{
-    margin-bottom: 25px;
+.topSection {
+  margin-bottom: 28px;
 }
 
-.paymentTitle{
-    font-size: 34px;
-    font-weight: bold;
-    color: #1d1d1f;
-    margin: 0;
+.paymentTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0a2540; // Slate Black
+  margin: 0 0 6px 0;
+  letter-spacing: -0.5px;
 }
 
-
-/* Fake Credit Card */
-
-.fakeCard{
-
-    width: 100%;
-    height: 220px;
-
-    border-radius: 30px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    background: linear-gradient(
-      135deg,
-      #635bff,
-      #8b7dff
-    );
-
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    box-shadow: 0 10px 25px rgba(99,91,255,0.3);
-
+.secureSubtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #00d4b6; // Emerald/Mint Green security accent color
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.cardTop{
+/* Premium Summary Card with a subtle colored left border accent */
+.summaryCard {
+  background-color: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-left: 4px solid #635bff; // Stripe Brand Purple Accent
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 24px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.02);
+
+  .summaryRow {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.chip{
-    width: 55px;
-    height: 40px;
-    background-color: gold;
-    border-radius: 10px;
-}
-
-.visaText{
-    font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.cardNumberDisplay{
-    font-size: 26px;
-    letter-spacing: 3px;
-    font-weight: bold;
-}
-
-.cardBottom{
-    display: flex;
-    justify-content: space-between;
-}
-
-.smallTitle{
-    font-size: 12px;
-    opacity: 0.8;
-    margin-bottom: 5px;
-}
-
-.cardText{
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-}
-
-/* Form */
-
-.cardBox{
-
-    background-color: white;
-
-    border-radius: 25px;
-
-    padding: 20px;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-
-}
-
-.paymentInput{
-
-    width: 100%;
-
-    height: 55px;
-
-    border: none;
-
-    background-color: #f5f5f7;
-
-    border-radius: 15px;
-
-    margin-bottom: 15px;
-
-    padding: 15px;
-
-    font-size: 16px;
-
-}
-
-.rowInput{
-    display: flex;
-    gap: 15px;
-}
-
-.smallInput{
-
-    flex: 1;
-
-    height: 55px;
-
-    border: none;
-
-    background-color: #f5f5f7;
-
-    border-radius: 15px;
-
-    padding: 15px;
-
-    font-size: 16px;
-
-}
-
-/* Summary */
-
-.summaryBox{
-
-    background-color: white;
-
-    margin-top: 25px;
-
-    border-radius: 25px;
-
-    padding: 20px;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-
-}
-
-.summaryRow{
-
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 15px;
-
-    font-size: 18px;
-
-}
-
-.totalPrice{
-    font-weight: bold;
-    color: #635bff;
-}
-
-/* Button */
-
-.payButton{
-
-    margin-top: 30px;
-
-    height: 60px;
-
-    background: linear-gradient(
-      135deg,
-      #635bff,
-      #7a73ff
-    );
-
-    border-radius: 20px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    color: white;
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    box-shadow: 0 10px 20px rgba(99,91,255,0.3);
-
-    transition: 0.3s;
-
-}
-
-.payButton:active{
-    transform: scale(0.97);
-}
-
-/* Footer */
-
-.stripeText{
-
-    text-align: center;
-
-    margin-top: 20px;
-
-    color: gray;
-
     font-size: 14px;
+    color: #4f5b66;
+    margin-bottom: 10px;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.totalRow {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #e3e8ee;
+      font-size: 16px;
+      color: #0a2540;
+    }
+  }
+
+  .totalPrice {
+    font-weight: 700;
+    color: #635bff; // Highlighted target sum
+  }
+}
+
+.paymentFormContainer {
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.02);
+
+  .sectionTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4f5b66;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+  }
+}
+
+.inputWrapper {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+
+  &.flex-1 {
+    flex: 1;
+  }
+}
+
+.inputLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3c4257;
+  margin-bottom: 8px;
+}
+
+.innerInputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .cardIcon {
+    position: absolute;
+    right: 14px;
+    font-size: 20px;
+    color: #635bff; // The icon pop matches the brand theme
+  }
+}
+
+.stripeInput {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #e3e8ee;
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 15px;
+  color: #0a2540;
+  outline: none;
+  transition: all 0.15s ease;
+
+  &::placeholder {
+    color: #a3acb9;
+  }
+
+  &:focus {
+    border-color: #635bff;
+    box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.12);
+    background-color: #fff;
+  }
+
+  &.withIcon {
+    padding-right: 44px;
+  }
+}
+
+.rowInput {
+  display: flex;
+  gap: 16px;
+}
+
+/* Button Layout Wrapper */
+.actionButtonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Core Payment CTA */
+.stripePayButton {
+  width: 100%;
+  height: 50px;
+  background-color: #635bff;
+  border-radius: 8px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover:not(:disabled) {
+    background-color: #0a2540;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+
+  &:disabled {
+    background-color: #e3e8ee;
+    color: #a3acb9;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+/* Clean Cancel Layout Button */
+.stripeCancelButton {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  color: #697386;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #f8f9fa;
+    color: #cd3d64; // Smooth crimson switch on action hover
+    border-color: #f8b4c2;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+
+  ion-spinner {
+    --color: #ffffff;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.stripeFooter {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.stripeText {
+  margin: 0;
+  color: #697386;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
 }
