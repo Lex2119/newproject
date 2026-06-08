@@ -23,6 +23,13 @@ export class User {
 
   // Optional: Add a mutation method if you want to allow profile edits later
   updateUserProfile(updatedData: any) {
-    this.activeUser = { ...this.activeUser, ...updatedData };
+  // Directly modify the properties of the existing object 
+  // so the memory reference stays exactly the same across all pages!
+  if (updatedData.avatar) {
+    this.activeUser.avatar = updatedData.avatar;
   }
+  if (updatedData.name) {
+    this.activeUser.name = updatedData.name;
+  }
+}
 }

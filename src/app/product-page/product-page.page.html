@@ -1,8 +1,7 @@
 <ion-content [fullscreen]="true" class="mainbackground">
-  <ion-grid class="theGrid">
+  <div class="product-fixed-layout">
     
     <div class="topRow" [style.background-color]="MyProduct?.backgroundcolor">
-      
       <div class="custom-header">
         <div class="back-icon-container" routerLink="/home-page">
           <ion-icon name="arrow-back-outline"></ion-icon>
@@ -10,13 +9,11 @@
         <div class="header-spacer"></div> 
       </div>
 
-      <ion-row class="image-box">
-        <ion-col class="ion-text-center">
-          <div class="imageCircleWrapper">
-            <img class="productImg" [src]="MyProduct?.image" alt="Food Image">
-          </div>
-        </ion-col>
-      </ion-row>
+      <div class="image-box">
+        <div class="imageCircleWrapper">
+          <img class="productImg" [src]="MyProduct?.image" alt="Food Image">
+        </div>
+      </div>
     </div>
 
     <div class="midRow">
@@ -36,67 +33,69 @@
     </div>
 
     <div class="bottomSession">
-      <ion-row class="bottomRow">
-        <ion-col size="5" class="quantity-col">
+      <div class="bottomRow-flex">
+        <div class="quantity-col">
           <div class="QuantitySession">
             <span class="qty-btn" (click)="MinusQuantity()">−</span>
             <span class="qty-number">{{Quantity}}</span>
             <span class="qty-btn" (click)="AddQuantity()">+</span>
           </div>
-        </ion-col>
+        </div>
 
-        <ion-col size="7" class="rightCol">
-          <div class="GreenAddAction" (click)="NoticeAddtocart()">
+        <div class="rightCol" (click)="NoticeAddtocart()">
+          <div class="GreenAddAction">
             Add to Cart
           </div>
-        </ion-col>
-      </ion-row>
+        </div>
+      </div>
     </div>
 
-    <ion-modal [isOpen]="isModelOpen" cssClass="asking-add-to-cart-model" (didDismiss)="onModelDismiss()">
-      <ng-template>
-        <div class="notice-model">
-          <p class="notice-title">Are you sure you want to add to cart?</p>
-          <div class="notice-button-area">
-            <ion-button class="no-add-cart" (click)="AddProductToCart(false)">No</ion-button>
-            <ion-button class="yes-add-cart" (click)="AddProductToCart(true)">Yes</ion-button>
-          </div>
-        </div>
-      </ng-template>
-    </ion-modal>
+  </div>
 
-  </ion-grid>
+  <ion-modal [isOpen]="isModelOpen" cssClass="asking-add-to-cart-model" (didDismiss)="onModelDismiss()">
+    <ng-template>
+      <div class="notice-model">
+        <div class="notice-icon-circle">
+          <ion-icon name="cart-outline"></ion-icon>
+        </div>
+
+        <div class="notice-content-wrapper">
+          <h3 class="notice-title">Add to Basket?</h3>
+          <p class="notice-subtitle">
+            Would you like to add <strong>{{ Quantity }}x {{ MyProduct?.name }}</strong> to your current selection basket?
+          </p>
+        </div>
+
+        <div class="notice-button-area">
+          <button class="btn-dismiss" (click)="AddProductToCart(false)">Cancel</button>
+          <button class="btn-confirm" (click)="AddProductToCart(true)">Yes, Add</button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 
-<ion-footer [translucent]="true" class="persistent-footer">
-  <ion-toolbar class="footer-toolbar">
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" class="custom-tab-bar">
-        <ion-tab-button (click)="LinkToHome()">
-          <ion-icon name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToShop()">
-          <ion-icon name="storefront-outline"></ion-icon>
-          <ion-label>Shop</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToOrderHistory()">
-          <ion-icon name="receipt-outline"></ion-icon>
-          <ion-label>Orders</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToCart()">
-          <ion-icon name="cart-outline"></ion-icon>
-          <ion-label>Cart</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToProfile()">
-          <ion-icon name="person-outline"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
+<ion-footer class="persistent-footer">
+  <div class="custom-tab-row">
+    <button class="custom-tab-btn" (click)="LinkToHome()">
+      <ion-icon name="home"></ion-icon>
+      <span>Home</span>
+    </button>
+    <button class="custom-tab-btn active" (click)="LinkToShop()">
+      <ion-icon name="storefront-outline"></ion-icon>
+      <span>Shop</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToOrderHistory()">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <span>Orders</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      <span>Cart</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToProfile()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+  </div>
 </ion-footer>

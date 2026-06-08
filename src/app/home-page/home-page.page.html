@@ -5,7 +5,7 @@
       <ion-row class="ion-align-items-center">
         
         <ion-col size="2" class="avatar-container">
-          <img [src]="UserProfile?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'" 
+          <img [src]="UserProfile?.avatar" 
                class="ProfileImage" 
                alt="User Profile Picture">
           <span class="active-status-dot"></span>
@@ -120,31 +120,33 @@
 
 </ion-content>
 
-<ion-footer [translucent]="true" class="persistent-footer">
-  <ion-toolbar class="footer-toolbar">
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" class="custom-tab-bar">
-        <ion-tab-button (click)="LinkToHome()">
-          <ion-icon name="home" class="active-tab-override"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="LinkToShop()">
-          <ion-icon name="storefront-outline"></ion-icon>
-          <ion-label>Shop</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="LinkToOrderHistory()">
-          <ion-icon name="receipt-outline"></ion-icon>
-          <ion-label>Orders</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="LinkToCart()">
-          <ion-icon name="cart-outline"></ion-icon>
-          <ion-label>Cart</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="LinkToProfile()">
-          <ion-icon name="person-outline"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
+<ion-footer class="persistent-footer">
+  <div class="custom-tab-row">
+    
+    <button class="custom-tab-btn active" (click)="LinkToHome()">
+      <ion-icon name="home"></ion-icon>
+      <span>Home</span>
+    </button>
+
+    <button class="custom-tab-btn" (click)="LinkToShop()">
+      <ion-icon name="storefront-outline"></ion-icon>
+      <span>Shop</span>
+    </button>
+
+    <button class="custom-tab-btn" (click)="LinkToOrderHistory()">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <span>Orders</span>
+    </button>
+
+    <button class="custom-tab-btn" (click)="LinkToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      <span>Cart</span>
+    </button>
+
+    <button class="custom-tab-btn" (click)="LinkToProfile()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+
+  </div>
 </ion-footer>

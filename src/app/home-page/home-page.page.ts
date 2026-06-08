@@ -13,6 +13,14 @@ declare var Swal: any;
 })
 export class HomePagePage implements OnInit, OnDestroy {
 
+  ionViewWillEnter() {
+  // This executes every single time the user navigates back to the Home tab!
+  this.UserProfile = this.user.getUserProfile();
+  
+  // Optional debug to verify the data stream is working in your console
+    console.log('Home Page refreshed active user data context:', this.UserProfile);
+  }
+
   @ViewChild('bannerTrack', { static: false }) bannerTrack!: ElementRef;
 
   // Data Collections
@@ -170,7 +178,33 @@ export class HomePagePage implements OnInit, OnDestroy {
   LinkToProfile() { this.router.navigate(['/profile-page']); }
 
   addtocart(id: number) {
-    // Add your standard SweetAlert processing logic here
-    console.log('Item added to cart basket sequence:', id);
-  }
+      // 1. Locate the item from your service's mock database array
+      const foundProduct = this.product.findProduct(id);
+      
+      if (foundProduct) {
+        // 2. Wrap it inside the exact structural format your service expects
+        const cartPayload = {
+          MyProduct: foundProduct,
+          Quantity: 1
+        };
+        
+        // 3. Send it off to your service
+        this.product.Addtocart(cartPayload);
+        Swal.fire({
+        title: 'Added to Cart!',
+        text: `item add to cart successfully.`,
+        icon: 'success',
+        iconColor: '#4caf50', 
+        confirmButtonText: 'Awesome',
+        confirmButtonColor: 'rgb(236, 52, 20)', 
+        heightAuto: false, 
+        customClass: {
+          popup: 'swal2-ionic-fix'
+        }
+      });
+        console.log('Successfully pushed item to shared service cart array:', foundProduct.name);
+      } else {
+        console.error(`Product with ID ${id} was not found in the catalog.`);
+      }
+    }
 } // Absolute ending boundary bracket for the component class layout

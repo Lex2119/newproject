@@ -50,7 +50,6 @@ export class ProductPagePage implements OnInit {
 
   AddProductToCart(product: boolean){
     if(product == false){
-      alert("Product not added to cart.");
     }
     else{
       this.product.Addtocart({

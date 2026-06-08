@@ -452,7 +452,7 @@
 /* Full Width View More Button Structure Rules */
 .ViewMoreBtn {
   margin: 12px 0 24px 0;
-  --background: #ff4724; 
+  --background: linear-gradient(180deg, #ff4724 0%, #fd993a 100%); 
   --color: #ffffff;      
   font-weight: 700;
   font-size: 15px;
@@ -466,53 +466,93 @@
   }
 }
 
-
 /* ==========================================================================
-   5. PERSISTENT GLOBAL TAB FOOTER STYLING
+   5. PRODUCT DETAIL PAGE NOTICE COMPONENT
    ========================================================================== */
-
 .persistent-footer {
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #dcdcdc;
+  background-color: #eeeeee; /* Standard footer background track tint */
+  display: block;
+  
+  /* CRITICAL: Expands footer color safely underneath the physical touch bar zone */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-.footer-toolbar {
-  --background: #eeeeee;
-  --min-height: 56px;
+.custom-tab-row {
+  display: flex;
+  width: 100%;
+  height: 56px; /* Explicit core standard height limit */
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eeeeee;
+}
+
+.custom-tab-btn {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
   padding: 0;
-}
+  color: #ff4724; /* Muted base secondary font color */
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
 
-.custom-tab-bar {
-  --background: #eeeeee;
-  border-top: none;
-  height: 56px;
+  ion-icon {
+    font-size: 20px;
+    margin-bottom: 2px;
+    opacity: 0.75;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+  }
 
-  ion-tab-button {
-    --color: #ff4724; 
-    --color-selected: #ff4724; 
+  span {
     font-size: 10px;
     font-weight: 600;
-    position: relative;
+    opacity: 0.8;
+  }
 
+  /* Gray divider layout line between item button nodes */
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: #d1d1d1;
+  }
+
+  &:last-child::after {
+    display: none; /* Clear divider line configuration from last slot array pointer */
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.04);
+    
     ion-icon {
-      font-size: 20px;
-      margin-bottom: 2px;
-      transition: font-size 0.15s ease-in-out;
+      transform: scale(0.9);
     }
+  }
 
-    /* Vertical Grid Dividers on Tab Bars */
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 25%;
-      height: 50%;
-      width: 1px;
-      background-color: #d1d1d1; 
+  /* Highlight Active State Styling */
+  &.active {
+    color: #ff4724;
+    
+    ion-icon {
+      font-size: 23px; /* Emphasizes the currently active screen element */
+      opacity: 1;
     }
-
-    &:last-child::after {
-      display: none;
+    
+    span {
+      font-weight: 700;
+      opacity: 1;
     }
   }
 }

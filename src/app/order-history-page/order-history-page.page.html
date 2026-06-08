@@ -59,35 +59,33 @@
   </div>
 </ion-content>
 
-<ion-footer [translucent]="true" class="persistent-footer">
-  <ion-toolbar class="footer-toolbar">
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" class="custom-tab-bar">
-        <ion-tab-button (click)="LinkToHome()">
-          <ion-icon name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-tab-button>
+<ion-footer class="persistent-footer">
+  <div class="custom-tab-row">
+    
+    <button class="custom-tab-btn " (click)="LinkToHome()">
+      <ion-icon name="home"></ion-icon>
+      <span>Home</span>
+    </button>
 
-        <ion-tab-button (click)="LinkToShop()">
-          <ion-icon name="storefront-outline"></ion-icon>
-          <ion-label>Shop</ion-label>
-        </ion-tab-button>
+    <button class="custom-tab-btn" (click)="LinkToShop()">
+      <ion-icon name="storefront-outline"></ion-icon>
+      <span>Shop</span>
+    </button>
 
-        <ion-tab-button (click)="LinkToOrderHistory()">
-          <ion-icon name="receipt" class="active-tab-override"></ion-icon>
-          <ion-label>Orders</ion-label>
-        </ion-tab-button>
+    <button class="custom-tab-btn active" (click)="LinkToOrderHistory()">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <span>Orders</span>
+    </button>
 
-        <ion-tab-button (click)="LinkToCart()">
-          <ion-icon name="cart-outline"></ion-icon>
-          <ion-label>Cart</ion-label>
-        </ion-tab-button>
+    <button class="custom-tab-btn" (click)="LinkToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      <span>Cart</span>
+    </button>
 
-        <ion-tab-button (click)="LinkToProfile()">
-          <ion-icon name="person-outline"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
+    <button class="custom-tab-btn" (click)="LinkToProfile()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+
+  </div>
 </ion-footer>

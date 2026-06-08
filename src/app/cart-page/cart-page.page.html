@@ -1,6 +1,5 @@
 <ion-content [fullscreen]="true" class="mainbackground">
-
-  <div class="TopSession">
+  <div class="cart-flex-layout">
     
     <div class="custom-header">
       <div class="back-icon-container" routerLink="/home-page">
@@ -15,8 +14,8 @@
         <div *ngIf="CartList.length <= 0" class="emptyCart">
           Your cart is empty
         </div>
+        
         <ion-row class="CartItemRow" *ngFor="let item of CartList">
-          
           <ion-col size="5.5" class="LeftCol">
             <div class="ProductContainer" [style.background-color]="item.backgroundColor">
               <div class="CartImageCircle">
@@ -39,58 +38,45 @@
               <h2 class="productPrice">RM{{item.Price * item.quantity}}</h2>
             </div>
           </ion-col>
-
         </ion-row>
       </ion-grid>
     </div>
-  </div>
 
-  <div class="BottomSession">
-  
-    <div class="PriceSummaryBlock">
-      <span class="total-label">Total Payment</span>
-      <span class="checkout-price">RM{{GetTotalPrice()}}</span>
-    </div>
+    <div class="BottomSession">
+      <div class="PriceSummaryBlock">
+        <span class="total-label">Total Payment</span>
+        <span class="checkout-price">RM{{GetTotalPrice()}}</span>
+      </div>
 
-    <div class="CheckoutBox" [class.disabledButton]="!CanCheckout()" (click)="Checkout()">
-      <div class="checkout-text">
-        Checkout
+      <div class="CheckoutBox" [class.disabledButton]="!CanCheckout()" (click)="Checkout()">
+        <div class="checkout-text">Checkout</div>
       </div>
     </div>
 
   </div>
-
 </ion-content>
 
-<ion-footer [translucent]="true" class="persistent-footer">
-  <ion-toolbar class="footer-toolbar">
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" class="custom-tab-bar">
-        <ion-tab-button (click)="LinkToHome()">
-          <ion-icon name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToShop()">
-          <ion-icon name="storefront-outline"></ion-icon>
-          <ion-label>Shop</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToOrderHistory()">
-          <ion-icon name="receipt-outline"></ion-icon>
-          <ion-label>Orders</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToCart()">
-          <ion-icon name="cart" class="active-tab-override"></ion-icon>
-          <ion-label>Cart</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button (click)="LinkToProfile()">
-          <ion-icon name="person-outline"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
+<ion-footer class="persistent-footer">
+  <div class="custom-tab-row">
+    <button class="custom-tab-btn" (click)="LinkToHome()">
+      <ion-icon name="home"></ion-icon>
+      <span>Home</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToShop()">
+      <ion-icon name="storefront-outline"></ion-icon>
+      <span>Shop</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToOrderHistory()">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <span>Orders</span>
+    </button>
+    <button class="custom-tab-btn active" (click)="LinkToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      <span>Cart</span>
+    </button>
+    <button class="custom-tab-btn" (click)="LinkToProfile()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+  </div>
 </ion-footer>

@@ -1,30 +1,50 @@
+/* ==========================================================================
+   1. VIEWPORT ANCHORED CONTAINER SYSTEM (FORCE NO OVERFLOW)
+   ========================================================================== */
+
 .mainbackground {
     --ion-background-color: #000000;
+    --overflow: hidden; // Forces Ionic to disable its internal scrolling engines
 }
 
-.TopSession {
-    position: absolute;
-    height: 83.5%; /* Adjusted to scale content neatly with the newly implemented footer space */
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 0px 0px 0px 60px;
-    z-index: 10;
-    transform: translateY(-100%);
-    animation: slideInTop 1s ease-out forwards;
-    overflow: hidden;
+// Fixed framework wrapper completely anchoring the cart view over the page canvas
+.cart-flex-layout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    
+    /* Locks the container size to the precise physical display height, 
+       minus the standard height of your persistent tab footer */
+    height: calc(100vh - 56px - env(safe-area-inset-bottom, 0px));
+    
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 0px 0px 0px 60px;
+    
+    /* Strictly blocks the window page frame from ever scrolling */
+    overflow: hidden !important; 
+    z-index: 999;
+    
+    animation: slideInTop 0.4s ease-out forwards;
 }
+
+/* ==========================================================================
+   2. IMMOVABLE TOP HEADER LAYER
+   ========================================================================== */
 
 .custom-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 20px 10px 20px;
+    padding: 20px 20px 16px 20px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #ffffff;
-    border-bottom: 1px solid #f5f5f5; 
+    background: linear-gradient(180deg, #ff4724 0%, #fcb069 100%);
+    
+    /* Prevents header frame from ever compressing or moving */
+    flex-shrink: 0 !important; 
 
     .back-icon-container {
         display: flex;
@@ -34,7 +54,7 @@
         width: 42px;
         height: 42px;
         border-radius: 50%;
-        color: rgb(236, 52, 20); 
+        color: rgb(255, 255, 255); 
         cursor: pointer;
         transition: transform 0.1s ease;
         
@@ -48,7 +68,7 @@
     }
 
     .header-title {
-        color: #222222; 
+        color: rgb(255, 255, 255);
         font-size: 23px;
         font-weight: 700;
         letter-spacing: -0.2px;
@@ -59,10 +79,16 @@
     }
 }
 
+/* ==========================================================================
+   3. THE ONLY SCROLLABLE AREA (WHITE MIDDLE COMPONENT)
+   ========================================================================== */
+
 .scrollable-list {
-    flex-grow: 1;
-    overflow-y: auto;
+    flex: 1 !important;        // Claims 100% of the middle gap dynamically
+    overflow-y: scroll !important; // Forces scrollbar functionality ONLY here
+    height: 100%;
     padding: 10px 0;
+    -webkit-overflow-scrolling: touch; /* Butter-smooth kinetic scrolling on iOS */
 }
 
 .CartItemRow {
@@ -177,30 +203,30 @@
     }
 }
 
-@keyframes slideInTop {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.emptyCart {
+    text-align: center;
+    margin-top: 150px;
+    color: gray;
+    font-size: 22px;
 }
 
+/* ==========================================================================
+   4. IMMOVABLE BOTTOM CHECKOUT BAR LAYER
+   ========================================================================== */
+
 .BottomSession {
-    position: absolute;
-    bottom: 56px; /* Shifted up exactly 56px to clear room cleanly for our persistent footer layout */
-    right: 0;
     width: 100%;
-    height: 10%; 
+    height: 80px; 
     display: flex;
     justify-content: space-between; 
     align-items: center;
     padding: 0 0px 0 24px; 
-    z-index: 20;
+    
+    /* Forces the checkout bar to stay frozen at the bottom bounds */
+    flex-shrink: 0 !important; 
+    
     background-color: #000000;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .PriceSummaryBlock {
@@ -209,14 +235,10 @@
     justify-content: center;
     gap: 4px; 
     flex-grow: 1; 
-    padding-right: 12px;
-
-    position: relative;
-    top: -13px; 
 }
 
 .total-label {
-    color: #a1a1aa ; 
+    color: #a1a1aa; 
     font-size: 11px; 
     font-weight: 600;
     text-transform: uppercase;
@@ -231,9 +253,9 @@
 }
 
 .CheckoutBox {
-    width: 60%; 
+    width: 55%; 
     height: 100%; 
-    background-color: #34c759; 
+    background: linear-gradient(90deg, #ff4724 0%, #fcb069 100%);
     border-radius: 40px 0px 0px 0px; 
 
     display: flex;
@@ -243,83 +265,128 @@
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-}
 
-.CheckoutBox:active {
-    opacity: 0.95;
-    background-color: #2eb44f;
+    &:active {
+        opacity: 0.95;
+        background: #2eb44f;
+    }
 }
 
 .checkout-text {
     color: #ffffff;
-    font-size: 25px; 
+    font-size: 24px; 
     font-weight: 700; 
     letter-spacing: -0.3px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
-    
-    position: relative;
-    top: -10px; 
-}
-
-.emptyCart {
-    text-align: center;
-    margin-top: 200px;
-    color: gray;
-    font-size: 22px;
 }
 
 .disabledButton {
-    opacity: 0.7;
+    opacity: 0.5;
     pointer-events: none;
+    filter: grayscale(0.5);
 }
 
-/* Custom Persistent Footer Rules - Configured safely for 5 Columns */
+/* ==========================================================================
+   5. PERSISTENT FOOTER SYSTEM (GESTURE SAFE-AREA ALIGNED)
+   ========================================================================== */
+
 .persistent-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #dcdcdc;
+    background-color: #eeeeee;
+    z-index: 1000;
+    display: block;
+    
+    // Extends background container cleanly underneath the phone's layout gesture bar
+    padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-.footer-toolbar {
-    --background: #eeeeee; /* Light Gray background container */
-    --min-height: 56px;
+.custom-tab-row {
+    display: flex;
+    width: 100%;
+    height: 56px; 
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eeeeee;
+}
+
+.custom-tab-btn {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0;
     padding: 0;
-}
+    color: #ff4724; 
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
 
-.custom-tab-bar {
-    --background: #eeeeee; /* Gray color scheme background */
-    border-top: none;
-    height: 56px;
+    ion-icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+        opacity: 0.65;
+        transition: transform 0.1s ease, opacity 0.1s ease;
+    }
 
-    ion-tab-button {
-        --color: #ff4724; /* Base icon and text color updated to your exact Orangered brand color */
-        --color-selected: #ff4724; 
-        font-size: 10px; /* Optimized layout size for 5 columns */
+    span {
+        font-size: 10px;
         font-weight: 600;
-        position: relative;
+        opacity: 0.75;
+    }
 
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 25%;
+        height: 50%;
+        width: 1px;
+        background-color: #d1d1d1;
+    }
+
+    &:last-child::after {
+        display: none; 
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.04);
+        ion-icon { transform: scale(0.9); }
+    }
+
+    &.active {
+        color: #ff4724;
         ion-icon {
-            font-size: 20px; /* Optimized layout size for 5 columns */
-            margin-bottom: 2px;
+            font-size: 23px; 
+            opacity: 1;
         }
-
-        /* Subtle vertical line in between buttons */
-        &::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 25%;
-            height: 50%; /* Center aligned and takes up half the button height */
-            width: 1px;
-            background-color: #d1d1d1; /* Soft gray line to contrast nicely against #eeeeee background */
-        }
-
-        /* Prevents trailing line on the final button */
-        &:last-child::after {
-            display: none;
+        span {
+            font-weight: 700;
+            opacity: 1;
         }
     }
 }
 
-.active-tab-override {
-    font-size: 23px !important;
+/* ==========================================================================
+   6. VISUAL ANIMATIONS
+   ========================================================================== */
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

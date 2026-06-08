@@ -24,7 +24,7 @@
     padding: 20px 20px 10px 20px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #ff4724;
 
     .back-icon-container {
         display: flex;
@@ -34,7 +34,7 @@
         width: 42px;
         height: 42px;
         border-radius: 50%;
-        color: rgb(236, 52, 20); 
+        color: rgb(247, 238, 237); 
         cursor: pointer;
         transition: transform 0.1s ease;
         
@@ -48,7 +48,7 @@
     }
 
     .header-title {
-        color: #222222; 
+        color: #f5f5f5; 
         font-size: 23px;
         font-weight: 700;
         letter-spacing: -0.2px;
@@ -66,7 +66,7 @@
 }
 
 .profile-hero-card {
-    background: linear-gradient(135deg, rgb(255, 87, 34) 0%, rgb(236, 52, 20) 100%);
+    background: linear-gradient(180deg, #ff4724 0%, #fcb069 100%);
     padding: 32px 24px;
     text-align: center;
     border-radius: 0 0 0 45px;
@@ -74,21 +74,49 @@
     margin-bottom: 24px;
 
     .avatar-wrapper {
+        position: relative; // Crucial anchor for placing the badge child element
         width: 95px;
         height: 95px;
         margin: 0 auto 14px auto;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 4px solid #ffffff;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        // Camera floating button style specs
+        .camera-badge {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            background-color: #ffffff;
+            color: #ff4724;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            z-index: 15;
+
+            ion-icon {
+                font-size: 16px;
+            }
+
+            &:active {
+                transform: scale(0.9);
+                background-color: #f5f5f5;
+            }
         }
     }
-
+    
     .user-fullname {
         font-size: 22px;
         font-weight: 800;
@@ -190,57 +218,93 @@
     }
 }
 
-/* Custom Persistent Footer Rules */
+/* ==========================================================================
+   5. PRODUCT DETAIL PAGE NOTICE COMPONENT
+   ========================================================================== */
 .persistent-footer {
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-    border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid #dcdcdc;
+  background-color: #eeeeee; /* Standard footer background track tint */
+  display: block;
+  
+  /* CRITICAL: Expands footer color safely underneath the physical touch bar zone */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.custom-tab-row {
+  display: flex;
+  width: 100%;
+  height: 56px; /* Explicit core standard height limit */
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eeeeee;
+}
+
+.custom-tab-btn {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  color: #ff4724; /* Muted base secondary font color */
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  ion-icon {
+    font-size: 20px;
+    margin-bottom: 2px;
+    opacity: 0.75;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+  }
+
+  span {
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  /* Gray divider layout line between item button nodes */
+  &::after {
+    content: '';
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    z-index: 30;
-}
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: #d1d1d1;
+  }
 
-.footer-toolbar {
-    --background: #eeeeee; 
-    --min-height: 56px;
-    padding: 0;
-}
+  &:last-child::after {
+    display: none; /* Clear divider line configuration from last slot array pointer */
+  }
 
-.custom-tab-bar {
-    --background: #eeeeee; 
-    border-top: none;
-    height: 56px;
-
-    ion-tab-button {
-        --color: #ff4724 !important; 
-        --color-selected: #ff4724 !important; 
-        color: #ff4724 !important;
-        font-size: 10px; 
-        font-weight: 600;
-        position: relative;
-
-        ion-icon {
-            font-size: 20px; 
-            margin-bottom: 2px;
-            color: #ff4724 !important;
-        }
-
-        &::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 25%;
-            height: 50%; 
-            width: 1px;
-            background-color: #d1d1d1; 
-        }
-
-        &:last-child::after {
-            display: none;
-        }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.04);
+    
+    ion-icon {
+      transform: scale(0.9);
     }
-}
+  }
 
-.active-tab-override {
-    font-size: 23px !important;
+  /* Highlight Active State Styling */
+  &.active {
+    color: #ff4724;
+    
+    ion-icon {
+      font-size: 23px; /* Emphasizes the currently active screen element */
+      opacity: 1;
+    }
+    
+    span {
+      font-weight: 700;
+      opacity: 1;
+    }
+  }
 }

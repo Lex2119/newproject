@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../database/product';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-shop-page',
   templateUrl: './shop-page.page.html',
@@ -147,7 +149,37 @@ export class ShopPagePage implements OnInit {
   }
 
   addtocart(id: number) {
-    alert("ID= " + id);
+    // 1. Locate the item matching the button clicked
+    const foundProduct = this.product.findProduct(id);
+    
+    if (foundProduct) {
+      // 2. Format the payload configuration bundle
+      const cartPayload = {
+        MyProduct: foundProduct,
+        Quantity: 1
+      };
+      
+      // 3. Dispatch to the service instance
+      this.product.Addtocart(cartPayload);
+
+      this.product.Addtocart(cartPayload);
+        Swal.fire({
+        title: 'Added to Cart!',
+        text: `item add to cart successfully.`,
+        icon: 'success',
+        iconColor: '#4caf50', 
+        confirmButtonText: 'Awesome',
+        confirmButtonColor: 'rgb(236, 52, 20)', 
+        heightAuto: false, 
+        customClass: {
+          popup: 'swal2-ionic-fix'
+        }
+      });
+      // Optional: Give visual feedback instead of standard native popups
+      console.log(`${foundProduct.name} updated in service cache storage.`);
+    } else {
+      console.error(`Product validation failed for ID: ${id}`);
+    }
   }
 
   LinkToHome() { this.router.navigate(['/home-page']); }

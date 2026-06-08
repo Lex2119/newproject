@@ -1,26 +1,45 @@
-.theGrid {
-    background-color: #ffffff;
-    height: calc(100dvh - 56px); 
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    overflow: hidden;
+/* ==========================================================================
+   1. FIXED VIEWPORT ANCHORED STRUCTURAL FRAMEWORK (PREVENTS OVERFLOW)
+   ========================================================================== */
+
+.mainbackground {
+    --ion-background-color: #000000;
+    --overflow: hidden; // Overrides and forces internal Ionic scroll engines off
 }
 
-// TOP CONTAINER
+.product-fixed-layout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    
+    /* Perfect viewport lock calculation minus your custom bottom footer */
+    height: calc(100vh - 56px - env(safe-area-inset-bottom, 0px));
+    
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 0px 0px 40px 40px;
+    overflow: hidden !important; 
+    z-index: 999;
+    
+    animation: slideInTop 0.4s ease-out forwards;
+}
+
+/* ==========================================================================
+   2. IMMOVABLE TOP IMAGE PROFILE LAYER
+   ========================================================================== */
+
 .topRow {
-    height: 40vh; 
-    min-height: 280px;
+    height: 38vh; 
+    min-height: 260px;
     width: 100%;
     border-radius: 0px 0px 40px 40px;
     z-index: 2;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    
-    transform: translateY(-100%);
-    animation: slideInTop 0.8s ease-out forwards;
+    flex-shrink: 0 !important; // Blocks banner from scaling down on short screens
 }
 
 .custom-header {
@@ -52,13 +71,6 @@
         }
     }
 
-    .header-title {
-        color: #ffffff;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-    }
-
     .header-spacer {
         width: 42px; 
     }
@@ -73,8 +85,8 @@
 }
 
 .imageCircleWrapper {
-    width: 200px;  
-    height: 200px;
+    width: 180px;  
+    height: 180px;
     margin: 0 auto;
     border-radius: 50%;
     overflow: hidden; 
@@ -94,14 +106,18 @@
     to { transform: rotate(360deg); }
 }
 
-// MIDDLE CONTAINER
+/* ==========================================================================
+   3. THE ONLY SCROLLABLE AREA (WHITE MIDDLE COMPONENT)
+   ========================================================================== */
+
 .midRow {
-    flex: 1;
+    flex: 1 !important;           // Takes up 100% of open middle space dynamically
+    overflow-y: scroll !important; // Isolates vertical scrolling engine to this container only
     width: 100%;
     background-color: #ffffff;
-    padding: 24px 24px 15px 24px; 
+    padding: 24px 24px 20px 24px; 
     box-sizing: border-box;
-    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; 
 }
 
 .product-info {
@@ -144,26 +160,34 @@
     }
 }
 
-// BOTTOM CONTAINER
+/* ==========================================================================
+   4. IMMOVABLE ADD TO CART ACTION STRIP LAYER
+   ========================================================================== */
+
 .bottomSession {
     height: 76px; 
     width: 100%;
     background-color: #424242; 
-    border-radius: 24px 24px 0px 0px; 
+    border-radius: 24px 24px 0   px 0px; 
     box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.06); 
     z-index: 3;
+    flex-shrink: 0 !important; // Keeps add-to-cart layout panel safe from shrinking
 }
 
-.bottomRow {
-    height: 76px; 
-    margin: 0; 
+.bottomRow-flex {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .quantity-col {
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    padding: 0 10px;
 }
 
 .QuantitySession {
@@ -172,7 +196,7 @@
     justify-content: space-between;
     background-color: #eeeeee; 
     border-radius: 30px;
-    width: 90%;
+    width: 100%;
     padding: 8px 14px;
     color: #222222;
     
@@ -192,16 +216,16 @@
 }
 
 .rightCol {
+    width: 55%;
     height: 100%;
-    padding: 0px;
 }
 
 .GreenAddAction {
-    background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+    background: linear-gradient(90deg, #ff4724 0%, #fcb069 100%);
     height: 100%;
     width: 100%;
     color: #ffffff;
-    border-radius: 24px 0 0 0; 
+    border-radius: 24px 24px 0 0; 
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -219,6 +243,219 @@
     }
 }
 
+/* ==========================================================================
+   5. DIALOG POPUP MODAL ARCHITECTURE
+   ========================================================================== */
+
+ion-modal.asking-add-to-cart-model {
+    --width: 88%;
+    --max-width: 340px;
+    --height: auto;
+    --border-radius: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-modal.asking-add-to-cart-model::part(content) {
+    border-radius: 28px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: visible; 
+    background: #ffffff;
+}
+
+ion-modal.asking-add-to-cart-model::part(backdrop) {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px); 
+}
+
+.notice-model {
+    position: relative;
+    padding: 32px 20px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+}
+
+.notice-icon-circle {
+    position: absolute;
+    top: -30px; 
+    background: linear-gradient(135deg, #ff4724 0%, #f7d598 100%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 28px;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+    border: 4px solid #ffffff;
+}
+
+.notice-content-wrapper {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 28px;
+    width: 100%;
+
+    .notice-title {
+        font-size: 21px;
+        font-weight: 800;
+        color: #222222;
+        margin: 0 0 8px 0;
+        letter-spacing: -0.3px;
+    }
+
+    .notice-subtitle {
+        font-size: 14px;
+        color: #666666;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0 8px;
+        
+        strong {
+            color: #222222;
+            font-weight: 700;
+        }
+    }
+}
+
+.notice-button-area {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+
+    button {
+        flex: 1;
+        height: 46px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: transform 0.1s ease, filter 0.15s ease;
+        user-select: none;
+
+        &:active {
+            transform: scale(0.96);
+        }
+    }
+
+    .btn-dismiss {
+        background-color: #f5f5f5;
+        color: #777777;
+
+        &:active {
+            background-color: #e0e0e0;
+        }
+    }
+
+    .btn-confirm {
+        background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+
+        &:active {
+            filter: brightness(0.9);
+        }
+    }
+}
+
+/* ==========================================================================
+   6. PERSISTENT SYSTEM FOOTER STYLING (SAFE-AREA PROTECTION)
+   ========================================================================== */
+
+.persistent-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    border-top: 1px solid #dcdcdc;
+    background-color: #eeeeee; 
+    z-index: 1000;
+    display: block;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.custom-tab-row {
+    display: flex;
+    width: 100%;
+    height: 56px; 
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eeeeee;
+}
+
+.custom-tab-btn {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    color: #ff4724; 
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    ion-icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+        opacity: 0.75;
+        transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+
+    span {
+        font-size: 10px;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 25%;
+        height: 50%;
+        width: 1px;
+        background-color: #d1d1d1;
+    }
+
+    &:last-child::after {
+        display: none; 
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.04);
+        ion-icon { transform: scale(0.9); }
+    }
+
+    &.active {
+        color: #ff4724;
+        ion-icon {
+            font-size: 23px; 
+            opacity: 1;
+        }
+        span {
+            font-weight: 700;
+            opacity: 1;
+        }
+    }
+}
+
+/* ==========================================================================
+   7. CORE ANIMATIONS
+   ========================================================================== */
+
 @keyframes slideInTop {
     from {
         transform: translateY(-100%);
@@ -228,107 +465,4 @@
         transform: translateY(0);
         opacity: 1;
     }
-}
-
-ion-modal.asking-add-to-cart-model{
-    --width: 80%;
-    --max-width: 420px;
-    --height: auto;
-    --border-radius: 24px;
-    --background-color: white;
-    align-items: center;
-    justify-content: center;
-    padding: 0px 15px;
-}
-
-ion-modal.asking-add-to-cart-model::part(content){
-    border-radius: 24px;
-    min-height: 250px;
-    max-height: 80vh;
-    box-shadow: 0px 15px 50px rgba(0,0,0,0.25);
-    overflow: hidden;
-}
-
-ion-modal.asking-add-to-cart-model::part(backdrop){
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(6px);
-}
-
-.notice-title{
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.notice-model{
-    height: 100%;
-    margin-top:50px;
-}
-
-.notice-button-area{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content:center;
-    align-items: end;
-    margin-bottom: 20px;
-
-    ion-button{
-        --width: 50px;
-        font-size: 20px;
-    }
-
-    .no-add-cart{
-        --background:red;
-    }
-
-    .add-to-cart{
-        --background:green;
-    }
-}
-
-/* Custom Persistent Footer Rules */
-.persistent-footer {
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-  border-top: 1px solid #e0e0e0;
-}
-
-.footer-toolbar {
-  --background: #eeeeee; 
-  --min-height: 56px;
-  padding: 0;
-}
-
-.custom-tab-bar {
-  --background: #eeeeee; 
-  border-top: none;
-  height: 56px;
-
-  ion-tab-button {
-    /* Kept active color style rule configuration globally uniform */
-    --color: #ff4724; 
-    --color-selected: #ff4724; 
-    font-size: 10px; 
-    font-weight: 600;
-    position: relative;
-
-    ion-icon {
-      font-size: 20px; 
-      margin-bottom: 2px;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 25%;
-      height: 50%; 
-      width: 1px;
-      background-color: #d1d1d1; 
-    }
-
-    &:last-child::after {
-      display: none;
-    }
-  }
 }
