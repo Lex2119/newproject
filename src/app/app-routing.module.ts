@@ -26,7 +26,8 @@ const routes: Routes = [
   {
     path: 'cart-page',
     loadChildren: () => import('./cart-page/cart-page.module').then( m => m.CartPagePageModule)
-  },  {
+  },
+  {
     path: 'order-history-page',
     loadChildren: () => import('./order-history-page/order-history-page.module').then( m => m.OrderHistoryPagePageModule)
   },
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'profile-page',
     loadChildren: () => import('./profile-page/profile-page.module').then( m => m.ProfilePagePageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
 
 ];
