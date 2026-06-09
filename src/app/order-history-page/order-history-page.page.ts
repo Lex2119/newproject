@@ -10,6 +10,8 @@ import { Product } from '../database/product';
 })
 export class OrderHistoryPagePage implements OnInit {
 
+  currentTab: string = 'order-history';
+
   OrderHistory : any;
 
   constructor(private router: Router, public product: Product) { 

@@ -34,21 +34,19 @@ export class PaymentPagePage implements OnInit {
     return total;
   }
 
-  // Handle Cancel Action safely with SweetAlert warning
   CancelPayment() {
     Swal.fire({
       title: 'Abandon Checkout?',
       text: 'Your current payment credentials will not be saved.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#cd3d64', // Crimson Confirmation
+      confirmButtonColor: '#cd3d64', 
       cancelButtonColor: '#635bff',
       confirmButtonText: 'Yes, cancel it',
       cancelButtonText: 'Stay here',
       heightAuto: false
     }).then((result) => {
       if (result.isConfirmed) {
-        // Redirect user back to shopping cart or shop catalog page
         this.router.navigate(['/cart-page']); 
       }
     });
@@ -74,12 +72,11 @@ export class PaymentPagePage implements OnInit {
 
     setTimeout(() => {
       this.isLoading = false;
-      const transactionId = "STRIPE-" + Math.floor(Math.random() * 1000000);
 
       Swal.fire({
         icon: 'success',
         title: 'Payment Successful',
-        html: `Thank you for your purchase!<br><br><b>Transaction ID:</b> ${transactionId}`,
+        html: `Thank you for your purchase!`,
         confirmButtonColor: '#635bff',
         heightAuto: false
       }).then(() => {

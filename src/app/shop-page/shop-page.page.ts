@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router'; 
 import { Product } from '../database/product';
 
 declare var Swal: any;
@@ -12,75 +12,50 @@ declare var Swal: any;
 })
 export class ShopPagePage implements OnInit {
 
+  currentTab: string = 'shop';
   masterProductList: any[] = [];
   filteredProductList: any[] = [];
-
-
-    currentSort = ''; 
-    lastSearchTerm = '';
-
-    categoriesList = [
-    {
-      name: 'All',
-      icon: 'apps-outline'
-    },
-    {
-      name: 'Noodles',
-      icon: 'restaurant-outline'
-    },
-    {
-      name: 'Western',
-      icon: 'fast-food-outline'
-    },
-    {
-      name: 'Vegetarian',
-      icon: 'leaf-outline'
-    },
-    {
-      name: 'Japanese',
-      icon: 'fish-outline'
-    },
-    {
-      name: 'Asian',
-      icon: 'restaurant-outline'
-    },
-    {
-      name: 'Local',
-      icon: 'home-outline'
-    },
-    {
-      name: 'Dessert',
-      icon: 'ice-cream-outline'
-    },
-    {
-      name: 'Mexican',
-      icon: 'pizza-outline'
-    },
-    {
-      name: 'Thai',
-      icon: 'flame-outline'
-    },
-    {
-      name: 'Chinese',
-      icon: 'cafe-outline'
-    }
-  ];
-
+  currentSort = ''; 
+  lastSearchTerm = '';
   selectedCategory = 'All';
 
-  selectCategory(category: any){
+  categoriesList = [
+    { name: 'All', icon: 'apps-outline' },
+    { name: 'Noodles', icon: 'restaurant-outline' },
+    { name: 'Western', icon: 'fast-food-outline' },
+    { name: 'Vegetarian', icon: 'leaf-outline' },
+    { name: 'Japanese', icon: 'fish-outline' },
+    { name: 'Asian', icon: 'restaurant-outline' },
+    { name: 'Local', icon: 'home-outline' },
+    { name: 'Dessert', icon: 'ice-cream-outline' },
+    { name: 'Mexican', icon: 'pizza-outline' },
+    { name: 'Thai', icon: 'flame-outline' },
+    { name: 'Chinese', icon: 'cafe-outline' }
+  ];
 
-    this.selectedCategory = category.name;
-
-    this.executeFilterAndSort();
-
-  }
-
-  constructor(private router: Router, private product: Product) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private product: Product
+  ) { }
 
   ngOnInit() {
     this.masterProductList = this.product.getProduct() || [];
-    this.filteredProductList = [...this.masterProductList];
+    
+    const passedCategory = this.route.snapshot.paramMap.get('category');
+    
+    if (passedCategory) {
+      this.selectedCategory = passedCategory;
+    } else {
+      this.selectedCategory = 'All';
+    }
+
+    this.executeFilterAndSort();
+  }
+
+  selectCategory(category: any){
+    this.selectedCategory = category.name;
+    this.executeFilterAndSort();
   }
 
   onSearchChange(event: any) {
@@ -88,60 +63,41 @@ export class ShopPagePage implements OnInit {
     this.executeFilterAndSort();
   }
 
-  // New Sorting Strategy Router Function
   applySort(sortType: string) {
     this.currentSort = sortType;
     this.executeFilterAndSort();
   }
 
   executeFilterAndSort() {
-
     let result = [...this.masterProductList];
 
     // Category Filter
     if(this.selectedCategory !== 'All'){
-
       result = result.filter(
         item => item.Category === this.selectedCategory
       );
-
     }
 
     // Search Filter
     if(this.lastSearchTerm){
-
       result = result.filter(item =>
         item.name &&
         item.name.toLowerCase().includes(this.lastSearchTerm)
       );
-
     }
 
     // Sorting
     if (this.currentSort === 'alpha') {
-
-      result.sort(
-        (a, b) => (a.name || '').localeCompare(b.name || '')
-      );
-
+      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
     }
     else if (this.currentSort === 'priceLow') {
-
-      result.sort(
-        (a, b) => (a.price || 0) - (b.price || 0)
-      );
-
+      result.sort((a, b) => (a.price || 0) - (b.price || 0));
     }
     else if (this.currentSort === 'priceHigh') {
-
-      result.sort(
-        (a, b) => (b.price || 0) - (a.price || 0)
-      );
-
+      result.sort((a, b) => (b.price || 0) - (a.price || 0));
     }
 
     this.filteredProductList = result;
-
   }
 
   ProductClick(productid: number) {
@@ -149,21 +105,12 @@ export class ShopPagePage implements OnInit {
   }
 
   addtocart(id: number) {
-    // 1. Locate the item matching the button clicked
     const foundProduct = this.product.findProduct(id);
-    
     if (foundProduct) {
-      // 2. Format the payload configuration bundle
-      const cartPayload = {
-        MyProduct: foundProduct,
-        Quantity: 1
-      };
+      const cartPayload = { MyProduct: foundProduct, Quantity: 1 };
+      this.product.Addtocart(cartPayload);
       
-      // 3. Dispatch to the service instance
-      this.product.Addtocart(cartPayload);
-
-      this.product.Addtocart(cartPayload);
-        Swal.fire({
+      Swal.fire({
         title: 'Added to Cart!',
         text: `item add to cart successfully.`,
         icon: 'success',
@@ -171,11 +118,8 @@ export class ShopPagePage implements OnInit {
         confirmButtonText: 'Awesome',
         confirmButtonColor: 'rgb(236, 52, 20)', 
         heightAuto: false, 
-        customClass: {
-          popup: 'swal2-ionic-fix'
-        }
+        customClass: { popup: 'swal2-ionic-fix' }
       });
-      // Optional: Give visual feedback instead of standard native popups
       console.log(`${foundProduct.name} updated in service cache storage.`);
     } else {
       console.error(`Product validation failed for ID: ${id}`);

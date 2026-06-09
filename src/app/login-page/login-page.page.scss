@@ -1,5 +1,4 @@
 .loginBackground {
-    // A soft, clean light background instead of a harsh gray
     --background: #f9f9f9; 
 }
 
@@ -41,7 +40,7 @@
 
 .FormSection {
     width: 100%;
-    max-width: 360px; // Keeps the form looking neat on wider screens
+    max-width: 360px; 
 }
 
 .InputBox {
@@ -52,9 +51,8 @@
     --min-height: 54px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
     
-    // Style the icons inside the input box
     ion-icon {
-        color: #ff5722; // Food theme orange
+        color: #ff5722; 
         font-size: 20px;
     }
 }
@@ -66,7 +64,6 @@
     font-weight: bold;
     --border-radius: 12px;
     
-    // Warm food-app gradient (Tomato Red to Orange)
     --background: linear-gradient(90deg, #ff3d00 0%, #ff9100 100%);
     box-shadow: 0px 4px 14px rgba(255, 61, 0, 0.3);
 }
@@ -79,19 +76,18 @@
     font-size: 13px;
 }
 
-// Add this to your existing CSS file
 .ErrorMessage {
-    color: #d32f2f; /* Food-app matching red error color */
+    color: #d32f2f; 
     font-size: 14px;
     font-weight: 500;
     text-align: center;
     margin-top: 5px;
-    margin-bottom: 15px; /* Creates clean spacing between text and button */
+    margin-bottom: 15px; 
     
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px; /* Puts a nice little space between the warning icon and the text */
+    gap: 5px; 
     
     ion-icon {
         font-size: 16px;

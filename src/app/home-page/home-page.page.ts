@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../database/product';
-import { User } from '../database/user'; // Linked to your user database asset file
+import { User } from '../database/user'; 
 
 declare var Swal: any;
 
@@ -12,33 +12,37 @@ declare var Swal: any;
   standalone: false
 })
 export class HomePagePage implements OnInit, OnDestroy {
+  
+  currentTab: string = 'home'; 
 
   ionViewWillEnter() {
-  // This executes every single time the user navigates back to the Home tab!
-  this.UserProfile = this.user.getUserProfile();
-  
-  // Optional debug to verify the data stream is working in your console
-    console.log('Home Page refreshed active user data context:', this.UserProfile);
+    // 1. Refresh active user data profile context
+    this.UserProfile = this.user.getUserProfile();
+    
+    // 2. FORCE the category selector to return back to 'All'
+    this.selectedItem = this.categoriesList[0]; 
+    
+    // 3. WIPE any active category filters and display all products again
+    this.myproductlist = [...this.allProducts];
+
   }
+
+  
 
   @ViewChild('bannerTrack', { static: false }) bannerTrack!: ElementRef;
 
-  // Data Collections
   allProducts: any[] = [];
   myproductlist: any[] = [];
   bannerPromos: any[] = [];
-  UserProfile: any = {}; // Holds real linked user data dynamically
+  UserProfile: any = {}; 
   
-  // FIX: Explicitly declare the greeting variable properties here
   greetingMessage: string = 'Welcome';
 
-  // Slider State Trackers
   activeBannerIndex = 0;
   slideIntervalId: any;
 
   private funBadges = ['Hot Deal', 'Trending', 'Chef Choice', 'Must Try', 'Top Rated'];
 
-  // Categories Setup Array List Mapping
   categoriesList = [
     { name: 'All', icon: 'apps-outline' }, 
     { name: 'Noodles', icon: 'restaurant-outline' }, 
@@ -54,7 +58,6 @@ export class HomePagePage implements OnInit, OnDestroy {
   ];
   selectedItem = this.categoriesList[0];
 
-  // Inject both Product and User systems together seamlessly
   constructor(
     private router: Router, 
     private product: Product, 
@@ -62,21 +65,16 @@ export class HomePagePage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // 1. Fetch products and clone default visible list array view maps
     this.allProducts = this.product.getProduct() || [];
     this.myproductlist = [...this.allProducts];
     this.selectedItem = this.categoriesList[0];
     
-    // 2. Automatically link your active user identity data from the shared service
     this.UserProfile = this.user.getUserProfile();
     
-    // 3. Set dynamic time greeting row calculation
     this.setDynamicGreeting();
     
-    // 4. Assemble random banners with structural smart colors
     this.generateRandomBanners();
 
-    // 5. Fire up the hardware slider system
     this.startAutoSlide();
   }
 
@@ -84,7 +82,6 @@ export class HomePagePage implements OnInit, OnDestroy {
     this.stopAutoSlide();
   }
 
-  // FIX: This method is now moved back inside the class boundaries where it belongs
   setDynamicGreeting() {
     const hour = new Date().getHours(); // Gets local hour (0 - 23)
     
@@ -111,24 +108,21 @@ export class HomePagePage implements OnInit, OnDestroy {
         ? prod.description.substring(0, 38) + '...' 
         : prod.description || 'Delectable dishes cooked fresh!';
 
-      // Extract native dataset colors from database items seamlessly
       const baseColor = prod.backgroundcolor || '#ff4724';
       
-      // Compute high-contrast readable dark alpha visual layers over backgrounds
       const dynamicGradient = `linear-gradient(135deg, ${baseColor} 0%, rgba(0, 0, 0, 0.35) 100%), ${baseColor}`;
 
       return {
         productId: prod.id,
         title: `TRY OUR ${prod.name.toUpperCase()}!`,
         subtitle: cleanSubtitle,
-        productImage: prod.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+        productImage: prod.image,
         bgGradient: dynamicGradient,
         badge: this.funBadges[Math.floor(Math.random() * this.funBadges.length)]
       };
     });
   }
 
-  /* Slider Engine Control Framework Logic Blocks */
   startAutoSlide() {
     this.slideIntervalId = setInterval(() => {
       if (this.bannerPromos.length > 0) {
@@ -152,7 +146,6 @@ export class HomePagePage implements OnInit, OnDestroy {
     });
   }
 
-  /* Navigation Interaction Handlers */
   OnBannerClick(productId: number) {
     this.router.navigate(['/product-page', { productid: productId }]);
   }
@@ -170,25 +163,27 @@ export class HomePagePage implements OnInit, OnDestroy {
     } 
   }
 
-  /* Footer Navigation Router Link Helpers */
   LinkToHome() { this.router.navigate(['/home-page']); }
-  LinkToShop() { this.router.navigate(['/shop-page']); }
+
+  LinkToShop() { 
+    this.router.navigate(['/shop-page', { category: this.selectedItem?.name || 'All' }]); 
+  }
+
   LinkToOrderHistory() { this.router.navigate(['/order-history-page']); }
+
   LinkToCart() { this.router.navigate(['/cart-page']); }
+
   LinkToProfile() { this.router.navigate(['/profile-page']); }
 
   addtocart(id: number) {
-      // 1. Locate the item from your service's mock database array
       const foundProduct = this.product.findProduct(id);
       
       if (foundProduct) {
-        // 2. Wrap it inside the exact structural format your service expects
         const cartPayload = {
           MyProduct: foundProduct,
           Quantity: 1
         };
         
-        // 3. Send it off to your service
         this.product.Addtocart(cartPayload);
         Swal.fire({
         title: 'Added to Cart!',
@@ -207,4 +202,4 @@ export class HomePagePage implements OnInit, OnDestroy {
         console.error(`Product with ID ${id} was not found in the catalog.`);
       }
     }
-} // Absolute ending boundary bracket for the component class layout
+  }

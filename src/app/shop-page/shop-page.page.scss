@@ -1,31 +1,32 @@
-/* Overall page setup */
 .mainbackground {
-  --background: #f8f9fa; /* Soft light-grey background */
-  --padding-top: 16px;
+  --background: #f8f9fa; 
+  
+  --padding-top: 0px; 
   --padding-bottom: 16px;
-  --padding-start: 12px; /* Deep left margin */
-  --padding-end: 12px;   /* Deep right margin */
+  --padding-start: 12px; 
+  --padding-end: 12px;   
 }
 
-/* Header & Search Styles */
 .shop-header {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  
+  background: #ff4724; 
 }
 
 .search-toolbar {
   --background: linear-gradient(180deg, #ff4724 0%, #fcb069 100%);
-  padding: 8px 6px;
+  
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 6px 8px 6px;
 }
 
 .custom-searchbar {
   --background: #f1f3f4;
   --placeholder-color: #8e8e93;
-  --icon-color: #ff4724; /* Search icon highlights in brand orangered */
+  --icon-color: #ff4724; 
   --border-radius: 12px;
   padding: 0;
 }
 
-/* Sections Headers */
 .DividerArea {
   display: flex;
   justify-content: space-between;
@@ -45,7 +46,6 @@
   font-weight: 600;
 }
 
-/* Products Layout Framework */
 .ProductRow {
   margin: 0 -6px; 
 }
@@ -118,7 +118,6 @@
   font-size: 16px;
 }
 
-/* Empty State Styling */
 .no-results-container {
   padding: 60px 20px;
   
@@ -139,23 +138,20 @@
   }
 }
 
-/* ==========================================================================
-   5. PRODUCT DETAIL PAGE NOTICE COMPONENT
-   ========================================================================== */
+
 .persistent-footer {
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
   border-top: 1px solid #dcdcdc;
-  background-color: #eeeeee; /* Standard footer background track tint */
+  background-color: #eeeeee; 
   display: block;
   
-  /* CRITICAL: Expands footer color safely underneath the physical touch bar zone */
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .custom-tab-row {
   display: flex;
   width: 100%;
-  height: 56px; /* Explicit core standard height limit */
+  height: 56px; 
   align-items: center;
   justify-content: space-between;
   background-color: #eeeeee;
@@ -173,7 +169,7 @@
   outline: none;
   margin: 0;
   padding: 0;
-  color: #ff4724; /* Muted base secondary font color */
+  color: #ff4724; 
   position: relative;
   cursor: pointer;
   transition: background-color 0.15s ease;
@@ -191,7 +187,6 @@
     opacity: 0.8;
   }
 
-  /* Gray divider layout line between item button nodes */
   &::after {
     content: '';
     position: absolute;
@@ -203,7 +198,7 @@
   }
 
   &:last-child::after {
-    display: none; /* Clear divider line configuration from last slot array pointer */
+    display: none;
   }
 
   &:active {
@@ -214,12 +209,11 @@
     }
   }
 
-  /* Highlight Active State Styling */
   &.active {
     color: #ff4724;
     
     ion-icon {
-      font-size: 23px; /* Emphasizes the currently active screen element */
+      font-size: 23px;
       opacity: 1;
     }
     
@@ -230,8 +224,6 @@
   }
 }
 
-/* Add these styles within your payment-page.page.scss file */
-
 .header-action-row {
   display: flex;
   align-items: center;
@@ -239,20 +231,18 @@
   width: 100%;
 }
 
-/* Make search bar consume the flex spaces smoothly */
 .custom-searchbar {
   flex: 1;
 }
 
-/* Premium Minimalist Circle Sorting Button Context */
 .sort-trigger-btn {
   width: 44px;
   height: 44px;
   min-width: 44px;
   border-radius: 50%;
   border: none;
-  background-color: #f1f3f4; // Matches searchbar color tint
-  color: #ff4724; // Matches global brand orange accent highlights
+  background-color: #f1f3f4; 
+  color: #ff4724; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -268,7 +258,6 @@
   }
 }
 
-/* Beautiful Dropdown Popover List Style Tweaks */
 .custom-sort-popover {
   --width: 220px;
   --border-radius: 12px;

@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="mainbackground">
+<ion-content [fullscreen]="true" class="mainbackground" #content>
 
   <div class="MenuFrame">
     <ion-grid class="ion-no-padding">
@@ -81,9 +81,9 @@
 
   <div class="DividerArea">
     <ion-label class="TitleText">
-      {{ selectedItem?.name === 'All' ? 'All Foods' : selectedItem?.name + ' Dishes' }}
+      {{ selectedItem.name === 'All' ? 'All Foods' : selectedItem.name + ' Dishes' }}
     </ion-label>
-    <ion-label class="SeeAllText" *ngIf="selectedItem?.name !== 'All'" (click)="selecteditem(categoriesList[0])">
+    <ion-label class="SeeAllText" *ngIf="selectedItem.name !== 'All'" (click)="selecteditem(categoriesList[0])">
       Clear Filter
     </ion-label>
   </div>
@@ -94,7 +94,7 @@
         <div class="ProductWrapper">
           <ion-card class="ProductFrame" (click)="ProductClick(pair.id)">
             <div class="ImgContainer">
-              <img class="ProductImage" src="{{pair.image || 'https://placehold.co/400x300?text=Food'}}">
+              <img class="ProductImage" [src]="pair.image || 'https://placehold.co/400x300?text=Food'">
             </div>
             <div class="ProductInfo">
               <ion-label class="NameText">{{ pair.name }}</ion-label>
@@ -108,7 +108,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="myproductlist && myproductlist.length > 6">
+    <ion-row>
       <ion-col size="12" class="RmvPadding">
         <ion-button class="ViewMoreBtn" expand="block" fill="solid" (click)="LinkToShop()">
           <ion-label>View More</ion-label>
@@ -116,6 +116,7 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
 </ion-content>
@@ -123,28 +124,28 @@
 <ion-footer class="persistent-footer">
   <div class="custom-tab-row">
     
-    <button class="custom-tab-btn active" (click)="LinkToHome()">
-      <ion-icon name="home"></ion-icon>
+    <button class="custom-tab-btn" [class.active]="currentTab === 'home'" (click)="LinkToHome()">
+      <ion-icon [name]="currentTab === 'home' ? 'home' : 'home-outline'"></ion-icon>
       <span>Home</span>
     </button>
 
-    <button class="custom-tab-btn" (click)="LinkToShop()">
-      <ion-icon name="storefront-outline"></ion-icon>
+    <button class="custom-tab-btn" [class.active]="currentTab === 'shop'" (click)="LinkToShop()">
+      <ion-icon [name]="currentTab === 'shop' ? 'storefront' : 'storefront-outline'"></ion-icon>
       <span>Shop</span>
     </button>
 
-    <button class="custom-tab-btn" (click)="LinkToOrderHistory()">
-      <ion-icon name="receipt-outline"></ion-icon>
+    <button class="custom-tab-btn" [class.active]="currentTab === 'orders'" (click)="LinkToOrderHistory()">
+      <ion-icon [name]="currentTab === 'orders' ? 'receipt' : 'receipt-outline'"></ion-icon>
       <span>Orders</span>
     </button>
 
-    <button class="custom-tab-btn" (click)="LinkToCart()">
-      <ion-icon name="cart-outline"></ion-icon>
+    <button class="custom-tab-btn" [class.active]="currentTab === 'cart'" (click)="LinkToCart()">
+      <ion-icon [name]="currentTab === 'cart' ? 'cart' : 'cart-outline'"></ion-icon>
       <span>Cart</span>
     </button>
 
-    <button class="custom-tab-btn" (click)="LinkToProfile()">
-      <ion-icon name="person-outline"></ion-icon>
+    <button class="custom-tab-btn" [class.active]="currentTab === 'profile'" (click)="LinkToProfile()">
+      <ion-icon [name]="currentTab === 'profile' ? 'person' : 'person-outline'"></ion-icon>
       <span>Profile</span>
     </button>
 

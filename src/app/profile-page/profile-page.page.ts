@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../database/user'; 
 
-// Import Capacitor Camera dependencies
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
@@ -13,6 +12,8 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class ProfilePagePage implements OnInit {
 
+  currentTab: string = 'profile';  
+
   isCurrentPage: boolean = true;
   UserProfile: any = {};
 
@@ -22,21 +23,18 @@ export class ProfilePagePage implements OnInit {
     this.UserProfile = this.user.getUserProfile();
   }
 
-  // Unified async method to take or upload a photo
   async changeProfilePhoto() {
     try {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false, // Set to true if you want to allow cropping
-        resultType: CameraResultType.Uri, // Safest performance type for mobile rendering
-        source: CameraSource.Prompt // Automatically creates a native Take Photo / Upload popup sheet
+        resultType: CameraResultType.Uri, 
+        source: CameraSource.Prompt 
       });
 
       if (image && image.webPath) {
-        // Update the centralized service cache with the local temporary mobile path
         this.user.updateUserProfile({ avatar: image.webPath });
         
-        // Instantly refresh the local UI view structure bound to the template
         this.UserProfile = this.user.getUserProfile();
       }
     } catch (error) {
@@ -44,7 +42,6 @@ export class ProfilePagePage implements OnInit {
     }
   }
 
-  /* Footer Navigation Router Helpers */
   LinkToHome() { this.router.navigate(['/home-page']); }
   LinkToShop() { this.router.navigate(['/shop-page']); }
   LinkToOrderHistory() { this.router.navigate(['/order-history-page']); }

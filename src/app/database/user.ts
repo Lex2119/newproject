@@ -5,31 +5,27 @@ import { Injectable } from '@angular/core';
 })
 export class User {
 
-  // Centralized, singular true source of user data
   private activeUser = {
     name: 'Lim Zhi Xian',
     email: 'll@gmail.com',
     phone: '+60 12-345 6789',
     deliveryAddress: 'Lot 12, Jalan Jenai, Kuala Lumpur',
-    avatar: '/assets/avatar.jpg' // Or your cloud storage URL string pointer
+    avatar: '/assets/avatar.jpg'
   };
 
   constructor() {}
 
-  // Method to fetch the active user context safely
   getUserProfile() {
     return this.activeUser;
   }
 
-  // Optional: Add a mutation method if you want to allow profile edits later
   updateUserProfile(updatedData: any) {
-  // Directly modify the properties of the existing object 
-  // so the memory reference stays exactly the same across all pages!
-  if (updatedData.avatar) {
-    this.activeUser.avatar = updatedData.avatar;
+
+    if (updatedData.avatar) {
+      this.activeUser.avatar = updatedData.avatar;
+    }
+    if (updatedData.name) {
+      this.activeUser.name = updatedData.name;
+    }
   }
-  if (updatedData.name) {
-    this.activeUser.name = updatedData.name;
-  }
-}
 }

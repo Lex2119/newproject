@@ -1,21 +1,15 @@
-/* ==========================================================================
-   1. VIEWPORT ANCHORED CONTAINER SYSTEM (FORCE NO OVERFLOW)
-   ========================================================================== */
 
 .mainbackground {
     --ion-background-color: #000000;
-    --overflow: hidden; // Forces Ionic to disable its internal scrolling engines
+    --overflow: hidden; 
 }
 
-// Fixed framework wrapper completely anchoring the cart view over the page canvas
 .cart-flex-layout {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     
-    /* Locks the container size to the precise physical display height, 
-       minus the standard height of your persistent tab footer */
     height: calc(100vh - 56px - env(safe-area-inset-bottom, 0px));
     
     display: flex;
@@ -23,7 +17,6 @@
     background-color: #ffffff;
     border-radius: 0px 0px 0px 60px;
     
-    /* Strictly blocks the window page frame from ever scrolling */
     overflow: hidden !important; 
     z-index: 999;
     
@@ -43,7 +36,6 @@
     box-sizing: border-box;
     background: linear-gradient(180deg, #ff4724 0%, #fcb069 100%);
     
-    /* Prevents header frame from ever compressing or moving */
     flex-shrink: 0 !important; 
 
     .back-icon-container {
@@ -84,11 +76,11 @@
    ========================================================================== */
 
 .scrollable-list {
-    flex: 1 !important;        // Claims 100% of the middle gap dynamically
-    overflow-y: scroll !important; // Forces scrollbar functionality ONLY here
+    flex: 1 !important;       
+    overflow-y: scroll !important; 
     height: 100%;
     padding: 10px 0;
-    -webkit-overflow-scrolling: touch; /* Butter-smooth kinetic scrolling on iOS */
+    -webkit-overflow-scrolling: touch; 
 }
 
 .CartItemRow {
@@ -222,7 +214,6 @@
     align-items: center;
     padding: 0 0px 0 24px; 
     
-    /* Forces the checkout bar to stay frozen at the bottom bounds */
     flex-shrink: 0 !important; 
     
     background-color: #000000;
@@ -301,7 +292,6 @@
     z-index: 1000;
     display: block;
     
-    // Extends background container cleanly underneath the phone's layout gesture bar
     padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 

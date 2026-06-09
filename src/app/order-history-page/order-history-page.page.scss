@@ -1,11 +1,9 @@
-/* Container Wrapper Padding Adjustments */
 .HistoryContainer {
   padding: 0 0 20px 0;
   background-color: #ffffff;
   min-height: 100%;
 }
 
-/* Header Section Style rules to eliminate empty white space */
 .history-header {
   background: linear-gradient(180deg, #ff4724 0%, #fcb069 100%);
   padding: 24px 20px 20px 20px;
@@ -21,7 +19,6 @@
   }
 }
 
-/* Dashboard Minimalist Statistics Card */
 .stats-summary-card {
   background-color: #ffffff;
   border-radius: 16px;
@@ -41,7 +38,7 @@
     .stat-num {
       font-size: 18px;
       font-weight: 700;
-      color: #ff4724; /* Brand Primary Theme Accent */
+      color: #ff4724; 
 
       &.StatusGreen {
         color: #4caf50;
@@ -65,7 +62,6 @@
   }
 }
 
-/* Elegant Centered Empty State Rules */
 .empty-history-wrapper {
   display: flex;
   flex-direction: column;
@@ -127,7 +123,6 @@
   overflow-y: auto;
 }
 
-// Spacing and divider between each order row
 .CartItemRow {
   padding: 12px;
   margin-bottom: 8px;
@@ -136,7 +131,6 @@
   align-items: center;
 }
 
-// Left column container for the product image background
 .ProductContainer {
   display: flex;
   justify-content: center;
@@ -147,7 +141,6 @@
   width: 100%;
 }
 
-// The white circle inside the colored background
 .CartImageCircle {
   background-color: #ffffff;
   width: 65px;
@@ -160,14 +153,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
 }
 
-// The actual product image scaling
 .CartImg {
   width: 75%;
   height: 75%;
   object-fit: contain; 
 }
 
-// Right column wrapper for text alignment
 .details-wrapper {
   padding-left: 12px;
   display: flex;
@@ -188,7 +179,6 @@
     color: #666666;
   }
 
-  // The payment time styling
   h3 {
     font-size: 0.8rem;
     font-weight: 300;
@@ -202,23 +192,20 @@
   }
 }
 
-/* ==========================================================================
-   5. PRODUCT DETAIL PAGE NOTICE COMPONENT
-   ========================================================================== */
+
 .persistent-footer {
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
   border-top: 1px solid #dcdcdc;
-  background-color: #eeeeee; /* Standard footer background track tint */
+  background-color: #eeeeee; 
   display: block;
   
-  /* CRITICAL: Expands footer color safely underneath the physical touch bar zone */
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .custom-tab-row {
   display: flex;
   width: 100%;
-  height: 56px; /* Explicit core standard height limit */
+  height: 56px; 
   align-items: center;
   justify-content: space-between;
   background-color: #eeeeee;
@@ -236,7 +223,7 @@
   outline: none;
   margin: 0;
   padding: 0;
-  color: #ff4724; /* Muted base secondary font color */
+  color: #ff4724; 
   position: relative;
   cursor: pointer;
   transition: background-color 0.15s ease;
@@ -254,7 +241,6 @@
     opacity: 0.8;
   }
 
-  /* Gray divider layout line between item button nodes */
   &::after {
     content: '';
     position: absolute;
@@ -266,7 +252,7 @@
   }
 
   &:last-child::after {
-    display: none; /* Clear divider line configuration from last slot array pointer */
+    display: none;
   }
 
   &:active {
@@ -277,12 +263,11 @@
     }
   }
 
-  /* Highlight Active State Styling */
   &.active {
-    color: #ff4724;
+    color: #ff4724 !important; 
     
     ion-icon {
-      font-size: 23px; /* Emphasizes the currently active screen element */
+      font-size: 23px; 
       opacity: 1;
     }
     
@@ -293,11 +278,7 @@
   }
 }
 
-.active-tab-override {
-  font-size: 23px !important;
-}
 
-/* Add this inside payment-page.page.scss */
 .emptyCartWarning {
   background-color: #fff3cd;
   border: 1px solid #ffeeba;

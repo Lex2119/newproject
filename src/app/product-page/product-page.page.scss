@@ -1,10 +1,7 @@
-/* ==========================================================================
-   1. FIXED VIEWPORT ANCHORED STRUCTURAL FRAMEWORK (PREVENTS OVERFLOW)
-   ========================================================================== */
 
 .mainbackground {
     --ion-background-color: #000000;
-    --overflow: hidden; // Overrides and forces internal Ionic scroll engines off
+    --overflow: hidden; 
 }
 
 .product-fixed-layout {
@@ -13,7 +10,6 @@
     left: 0;
     width: 100vw;
     
-    /* Perfect viewport lock calculation minus your custom bottom footer */
     height: calc(100vh - 56px - env(safe-area-inset-bottom, 0px));
     
     display: flex;
@@ -26,9 +22,6 @@
     animation: slideInTop 0.4s ease-out forwards;
 }
 
-/* ==========================================================================
-   2. IMMOVABLE TOP IMAGE PROFILE LAYER
-   ========================================================================== */
 
 .topRow {
     height: 38vh; 
@@ -39,7 +32,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0 !important; // Blocks banner from scaling down on short screens
+    flex-shrink: 0 !important; 
 }
 
 .custom-header {
@@ -106,13 +99,10 @@
     to { transform: rotate(360deg); }
 }
 
-/* ==========================================================================
-   3. THE ONLY SCROLLABLE AREA (WHITE MIDDLE COMPONENT)
-   ========================================================================== */
 
 .midRow {
-    flex: 1 !important;           // Takes up 100% of open middle space dynamically
-    overflow-y: scroll !important; // Isolates vertical scrolling engine to this container only
+    flex: 1 !important;          
+    overflow-y: scroll !important; 
     width: 100%;
     background-color: #ffffff;
     padding: 24px 24px 20px 24px; 
@@ -160,18 +150,15 @@
     }
 }
 
-/* ==========================================================================
-   4. IMMOVABLE ADD TO CART ACTION STRIP LAYER
-   ========================================================================== */
 
 .bottomSession {
     height: 76px; 
     width: 100%;
     background-color: #424242; 
-    border-radius: 24px 24px 0   px 0px; 
+    border-radius: 24px 24px 0px 0px; 
     box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.06); 
     z-index: 3;
-    flex-shrink: 0 !important; // Keeps add-to-cart layout panel safe from shrinking
+    flex-shrink: 0 !important; 
 }
 
 .bottomRow-flex {
@@ -220,12 +207,12 @@
     height: 100%;
 }
 
-.GreenAddAction {
+.AddAction {
     background: linear-gradient(90deg, #ff4724 0%, #fcb069 100%);
     height: 100%;
     width: 100%;
     color: #ffffff;
-    border-radius: 24px 24px 0 0; 
+    border-radius: 24px 0px 0px 0px; 
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -242,10 +229,6 @@
         filter: brightness(0.95);
     }
 }
-
-/* ==========================================================================
-   5. DIALOG POPUP MODAL ARCHITECTURE
-   ========================================================================== */
 
 ion-modal.asking-add-to-cart-model {
     --width: 88%;
@@ -364,9 +347,7 @@ ion-modal.asking-add-to-cart-model::part(backdrop) {
     }
 }
 
-/* ==========================================================================
-   6. PERSISTENT SYSTEM FOOTER STYLING (SAFE-AREA PROTECTION)
-   ========================================================================== */
+
 
 .persistent-footer {
     position: fixed;

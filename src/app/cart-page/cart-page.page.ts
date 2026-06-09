@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class CartPagePage implements OnInit {
 
+  currentTab: string = 'cart';
+
   CartList : any[] = [];
 
   constructor(private product: Product, private router: Router) {
